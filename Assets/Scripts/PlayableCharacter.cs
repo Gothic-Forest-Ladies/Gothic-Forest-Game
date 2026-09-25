@@ -1,12 +1,12 @@
 using UnityEngine;
 
-abstract class PlayableCharacter : MonoBehaviour : IDamagable
+abstract class PlayableCharacter : MonoBehaviour // TODO: add ", IDamagable" once the interface file exists
 {
     /*
 
-// Bye Yanushhhhhhhh
 
-    // PlayableCharacter Variables / Ola 24.9.26
+
+    PlayableCharacter Variables / Ola 24.9.26
     [SerializeField] protected int speed;
     [SerializeField] protected int maxHp;
     protected int currentHp;
