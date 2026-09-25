@@ -1,6 +1,6 @@
 using UnityEngine;
 
-abstract class PlayableCharacter : MonoBehaviour // TODO: add ", IDamagable" once the interface file exists
+abstract class PlayableCharacter : MonoBehaviour //, IDamagable
 {
     /*
 
