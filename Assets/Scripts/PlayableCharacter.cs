@@ -12,6 +12,15 @@ abstract class PlayableCharacter : MonoBehaviour, IDamagable
     public virtual void ApplyDamage(int damage) //for now we dont know, maybe take 1 hp
     {
         currentHp -= damage;
+        if (currentHp <= 0)
+        {
+            Die();
+        }
+    }
+
+    public virtual void Die()
+    {
+        // Place holder - decide what happens on death (respawn, game over, animation)
     }
 
     // SpecialAbility()
