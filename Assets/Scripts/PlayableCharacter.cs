@@ -3,6 +3,9 @@ using UnityEngine;
 abstract class PlayableCharacter : MonoBehaviour : IDamagable
 {
     /*
+
+// Hi Yanushhhhhhhh
+
     // PlayableCharacter Variables / Ola 24.9.26
     [SerializeField] protected int speed;
     [SerializeField] protected int maxHp;
