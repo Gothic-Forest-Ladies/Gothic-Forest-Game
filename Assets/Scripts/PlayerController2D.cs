@@ -68,10 +68,25 @@ class PlayerController2D : PlayableCharacter
 
         if (stats.canFly)
         {
+            // =========================================================
+            // FLIGHT MOVEMENT — TUNE / REPLACE THIS BLOCK
+            // TODO: change this behaviour of flight later.
+            //
+            // Numbers live on the stats asset (Assets/Data/BirdStats):
+            //   flyAcceleration = how hard holding Space pushes up
+            //   jumpForce       = max upward speed while flying
+            //   maxFallSpeed    = glide (small negative = slow fall)
+            //   gravityScale    = how heavy the bird feels
+            // Behaviour lives here. Current model: hold Space to
+            // accelerate upward, clamped rise and fall speeds.
+            // Ideas: tap-to-flap impulse, stamina, smooth ease-in.
+            // See also the DevNote component on the Bird object.
+            // =========================================================
             if (jumpHeld)
                 rb.linearVelocity += Vector2.up * (stats.flyAcceleration * Time.fixedDeltaTime);
             float y = Mathf.Clamp(rb.linearVelocity.y, stats.maxFallSpeed, stats.jumpForce);
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, y);
+            // ================= END FLIGHT MOVEMENT ===================
         }
         else if (jumpPressed && IsGrounded())
         {
