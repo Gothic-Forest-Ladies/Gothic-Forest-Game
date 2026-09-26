@@ -1,12 +1,12 @@
 using UnityEngine;
 
-abstract class PlayableCharacter : MonoBehaviour, IDamagable
+public abstract class PlayableCharacter : MonoBehaviour, IDamagable
 {
     
     // PlayableCharacter Variables / Ola 24.9.26
-    [SerializeField] protected int speed;
-    [SerializeField] protected int maxHp;
-    protected int currentHp; //v 
+    [SerializeField] public float speed;
+    [SerializeField] public int maxHp;
+    [SerializeField] public int currentHp; //v 
     
     
     public virtual void ApplyDamage(int damage) //for now we dont know, maybe take 1 hp
@@ -17,13 +17,21 @@ abstract class PlayableCharacter : MonoBehaviour, IDamagable
             Die();
         }
     }
-
+    // "die()" will probably move to the player itself, this one is just an abstract class for playable characters
     public virtual void Die()
     {
         // Place holder - decide what happens on death (respawn, game over, animation)
     }
 
-    // SpecialAbility()
+    public virtual void Movement()
+    {
+        // Implementation for player movement
+    }
+
+    public virtual void SpecialAbility()
+    {
+        // Implementation for special ability
+    }
     
     //  Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -38,9 +46,5 @@ abstract class PlayableCharacter : MonoBehaviour, IDamagable
         Movement();
     }
 
-    void Movement()
-    {
-        // Place holder for movment - using speed, decide on needed movement
-    }
 
 }
