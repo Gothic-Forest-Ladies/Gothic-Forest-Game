@@ -109,3 +109,7 @@ InitTestScene*.unity*
 /[Aa]ssets/Plugins.meta
 /[Aa]ssets/Plugins/NuGet/
 /[Aa]ssets/Plugins/NuGet.meta
+
+# Local Claude Code session config (per machine)
+/.claude/
+CLAUDE.local.md
