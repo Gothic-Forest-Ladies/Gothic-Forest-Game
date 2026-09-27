@@ -110,6 +110,11 @@ InitTestScene*.unity*
 /[Aa]ssets/Plugins/NuGet/
 /[Aa]ssets/Plugins/NuGet.meta
 
+# Local-only AI Game Developer (Unity MCP) plugin - embedded package, not shared with the team
+/Packages/com.ivanmurzak.unity.mcp/
+# packages-lock.json differs per machine while the plugin above is embedded locally
+/Packages/packages-lock.json
+
 # Local Claude Code session config (per machine)
 /.claude/
 CLAUDE.local.md
