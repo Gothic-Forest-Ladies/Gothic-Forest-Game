@@ -5683,7 +5683,6 @@ GameObject:
   - component: {fileID: 938012459}
   - component: {fileID: 938012458}
   - component: {fileID: 938012457}
-  - component: {fileID: 938012460}
   m_Layer: 0
   m_Name: Goal
   m_TagString: Untagged
@@ -5812,19 +5811,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &938012460
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 938012455}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10d80726774eb4902b4c20e8660e1092, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Flag
-  collectedSprite: {fileID: 21300000, guid: 94b853eedc75b4b628fd743bb23add53, type: 3}
 --- !u!1 &1009318432
 GameObject:
   m_ObjectHideFlags: 0
@@ -6369,7 +6355,6 @@ GameObject:
   - component: {fileID: 1508842331}
   - component: {fileID: 1508842330}
   - component: {fileID: 1508842329}
-  - component: {fileID: 1508842328}
   m_Layer: 0
   m_Name: Flag2
   m_TagString: Untagged
@@ -6377,19 +6362,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1508842328
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1508842327}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10d80726774eb4902b4c20e8660e1092, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Flag
-  collectedSprite: {fileID: 21300000, guid: 94b853eedc75b4b628fd743bb23add53, type: 3}
 --- !u!61 &1508842329
 BoxCollider2D:
   m_ObjectHideFlags: 0
