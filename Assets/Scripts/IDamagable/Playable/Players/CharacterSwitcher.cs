@@ -1,19 +1,10 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterSwitcher : MonoBehaviour
 {
-    //[SerializeField] Character[] characters;
-    //int current;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        // Initialize the current character index - placeholder for now, will be set to random for the first character
-        //current = Random.Range(0, characters.Length);
-    }
+    [SerializeField] private List<PlayableCharacter> characters;
+    private int currentIndex = 0;
 
-    // Update is called once per frame
-    // void Update()
-    // {
-        
-    // }
+    public PlayableCharacter ActiveCharacter => characters[currentIndex];
 }

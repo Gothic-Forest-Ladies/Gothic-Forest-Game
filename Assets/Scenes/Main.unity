@@ -5750,7 +5750,7 @@ GameObject:
   - component: {fileID: 880529601}
   - component: {fileID: 880529604}
   - component: {fileID: 880529602}
-  - component: {fileID: 880529605}
+  - component: {fileID: 880529606}
   m_Layer: 0
   m_Name: Bird
   m_TagString: Untagged
@@ -5870,7 +5870,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
---- !u!114 &880529605
+--- !u!114 &880529606
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5879,9 +5879,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 880529600}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c941f396c3c42a147b563c6d87ee7377, type: 3}
+  m_Script: {fileID: 11500000, guid: d11ae1a8d6dd95f458badb17b333b3d0, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Player3
+  m_EditorClassIdentifier: Assembly-CSharp::Bird
+  speed: 5
+  jumpForce: 8
+  maxHp: 0
+  currentHp: 0
 --- !u!1 &937654316
 GameObject:
   m_ObjectHideFlags: 0
@@ -7078,9 +7082,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1732703258}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d11ae1a8d6dd95f458badb17b333b3d0, type: 3}
+  m_Script: {fileID: 11500000, guid: c941f396c3c42a147b563c6d87ee7377, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Player2
+  m_EditorClassIdentifier: Assembly-CSharp::Small
+  speed: 5
+  jumpForce: 8
+  maxHp: 0
+  currentHp: 0
 --- !u!1 &1827580132
 GameObject:
   m_ObjectHideFlags: 0
@@ -7224,6 +7232,7 @@ GameObject:
   - component: {fileID: 1912305654}
   - component: {fileID: 1912305653}
   - component: {fileID: 1912305657}
+  - component: {fileID: 1912305658}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -7457,6 +7466,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterMovement
   rb: {fileID: 1912305654}
   currentCharacter: {fileID: 631207010}
+--- !u!114 &1912305658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1912305652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14484196b3b7eb1459ca52888ca996e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterSwitcher
+  characters:
+  - {fileID: 631207010}
+  - {fileID: 1732703263}
+  - {fileID: 880529606}
 --- !u!1 &1938596906
 GameObject:
   m_ObjectHideFlags: 0
