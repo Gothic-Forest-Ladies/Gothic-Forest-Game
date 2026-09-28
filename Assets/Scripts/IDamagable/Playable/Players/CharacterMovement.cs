@@ -23,4 +23,10 @@ public class CharacterMovement : MonoBehaviour
     {
         horizontalMovement = context.ReadValue<Vector2>().x;
     }
+
+    public void Jump(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+            currentCharacter.Jump(rb);
+    }
 }
