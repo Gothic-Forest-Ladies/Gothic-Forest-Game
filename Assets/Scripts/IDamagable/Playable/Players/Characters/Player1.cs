@@ -15,8 +15,8 @@ public class Player1 : PlayableCharacter
         
     // }
 
-    override public void Movement()
-    {
+    // override public void Movement()
+    // {
 
-    }
+    // }
 }
