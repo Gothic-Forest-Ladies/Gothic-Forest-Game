@@ -4,7 +4,8 @@ public abstract class PlayableCharacter : MonoBehaviour, IDamagable
 {
     
     // PlayableCharacter Variables / Ola 24.9.26
-    [SerializeField] public float speed;
+    [SerializeField] public float speed = 5f;
+    [SerializeField] public float jumpForce = 8f;
     [SerializeField] public int maxHp;
     [SerializeField] public int currentHp; //v 
     
@@ -23,10 +24,6 @@ public abstract class PlayableCharacter : MonoBehaviour, IDamagable
         // Place holder - decide what happens on death (respawn, game over, animation)
     }
 
-    public virtual void Movement()
-    {
-        // Implementation for player movement
-    }
 
     public virtual void SpecialAbility()
     {
@@ -40,11 +37,18 @@ public abstract class PlayableCharacter : MonoBehaviour, IDamagable
         currentHp = maxHp;
     }
 
-    //  Update is called once per frame
-    void Update()
+    public virtual void Movement(Rigidbody2D rb, float horizontalInput)
     {
-        Movement();
+        rb.linearVelocity = new Vector2(horizontalInput * speed, rb.linearVelocity.y);
+        
+        if (horizontalInput > 0)
+            transform.localScale = new Vector3(1, 1, 1);
+        else if (horizontalInput < 0)
+            transform.localScale = new Vector3(-1, 1, 1);
     }
-
+        public virtual void Jump(Rigidbody2D rb)
+    {
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+    }
 
 }

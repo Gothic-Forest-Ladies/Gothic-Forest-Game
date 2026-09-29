@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Player1 : PlayableCharacter
+public class Base : PlayableCharacter
 {
  
     // // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -9,14 +9,14 @@ public class Player1 : PlayableCharacter
     
     }
 
-    // // Update is called once per frame
+    // // Update is called once per frame1
     // void Update()
     // {
         
     // }
 
-    override public void Movement()
-    {
+    // override public void Movement()
+    // {
 
-    }
+    // }
 }
