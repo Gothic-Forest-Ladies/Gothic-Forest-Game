@@ -16,6 +16,8 @@ public abstract class AbstractTrap : MonoBehaviour, IDamagable
     {
         Debug.Log($"There was {damage} damage done! ");
     }
+
+    //public abstract void Die();
  
 
 

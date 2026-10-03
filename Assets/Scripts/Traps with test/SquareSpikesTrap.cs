@@ -12,6 +12,8 @@ public class SquareSpikesTrap : AbstractTrap
             Debug.Log("There was 1 damage done!");
         }
 
+        //public override void Die();
+
         void OnCollisionEnter2D(Collision2D col)
         {
             

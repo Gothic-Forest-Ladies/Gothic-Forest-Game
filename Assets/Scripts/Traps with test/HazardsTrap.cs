@@ -1,7 +1,8 @@
 using UnityEngine;
 
 public class HazardsTrap : AbstractTrap
-{
+{   
+    // Thorn pit / chasm 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
      int damage = 100;
 
@@ -10,8 +11,11 @@ public class HazardsTrap : AbstractTrap
         {
             damagable.ApplyDamage(damage);
             Debug.Log("There was 100 damage done!");
-            Die();
+            //Die();
         }
+
+        //public override void Die();
+
 
         void OnCollisionEnter2D(Collision2D col)
         {
