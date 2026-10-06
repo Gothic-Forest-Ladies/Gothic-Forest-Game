@@ -7,7 +7,7 @@ public class ThornPitTrap : AbstractTrap
      int damage = 33;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-        public override void ApplyDamage(IDamagable damagable)
+        public override void ApplyDamageToPlayer(IDamagable damagable)
         {
             damagable.ApplyDamage(damage);
             Debug.Log("There was damage done! A player heart is lost!");
@@ -20,14 +20,18 @@ public class ThornPitTrap : AbstractTrap
 
         }
 
+        public override void ApplyDamage(int damage)
+        {
+            // insert apply damage to player health logic here
+        }
+
 
         void OnCollisionEnter2D(Collision2D col)
         {
             Debug.Log("The trap has been touched!");
-            //col.GetComponent<IDamagable>()?.ApplyDamage(damage);
-            //GameObject gObj = col.gameObject;
-            //gObj.GetComponent<IDamagable>()?.ApplyDamage(damage);
-            ApplyDamage(damage);
+            if (col.gameObject.GetComponent<IDamagable>() == null) return;
+            ApplyDamageToPlayer(col.gameObject.GetComponent<IDamagable>());
+            
 
             // insert player knockback effect logic
 

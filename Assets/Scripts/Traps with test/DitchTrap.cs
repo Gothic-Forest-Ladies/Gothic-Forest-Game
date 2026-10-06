@@ -6,7 +6,7 @@ public class DitchTrap : AbstractTrap
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     
-        public override void ApplyDamage(IDamagable damagable)
+        public override void ApplyDamageToPlayer(IDamagable damagable)
         {
             damagable.ApplyDamage(damage);
             Debug.Log("There was damage done! A player heart is lost!");
@@ -17,14 +17,19 @@ public class DitchTrap : AbstractTrap
             // placeholder until we figure out how the trap "dies"
         }
 
+        public override void ApplyDamage(int damage)
+        {
+            // insert apply damage to player health logic here
+
+        }
+
         void OnCollisionEnter2D(Collision2D col)
         {
             
             Debug.Log("The trap has been touched!");
-            //col.GetComponent<IDamagable>()?.ApplyDamage(damage); // the problem is, there is no way to activate get component on a Collision2D variable (and not a GameObject)
-            //GameObject gameObject = col.gameObject;
-            //gameObject.GetComponent<IDamagable>()?.ApplyDamage(damage);
-            ApplyDamage(damage);
+            if (col.gameObject.GetComponent<IDamagable>() == null) return;
+            ApplyDamageToPlayer(col.gameObject.GetComponent<IDamagable>());
+            
 
             // insert player knockback effect logic
 

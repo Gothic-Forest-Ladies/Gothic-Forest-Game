@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 7264172319807774995}
   - component: {fileID: 2108263436565751540}
   - component: {fileID: 8436547223732765192}
-  - component: {fileID: 6654656851912941535}
   m_Layer: 0
   m_Name: spikes (1)
   m_TagString: Untagged
@@ -140,18 +139,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.03, y: 0.61}
   m_EdgeRadius: 0
---- !u!114 &6654656851912941535
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2494230260638168027}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ed744572430f2a4fa13419d12f80c9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HazardsTrap
 --- !u!1 &3817232749158202583
 GameObject:
   m_ObjectHideFlags: 0
@@ -162,6 +149,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6418562826393268292}
   - component: {fileID: 127157328558776326}
+  - component: {fileID: -1797886287202838319}
   m_Layer: 0
   m_Name: Thorn Pit
   m_TagString: Untagged
@@ -233,6 +221,18 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2.85, y: 0.56}
   m_EdgeRadius: 0
+--- !u!114 &-1797886287202838319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3817232749158202583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca078cce7360b2649869001b1a292c11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ThornPitTrap
 --- !u!1 &5588077749422683884
 GameObject:
   m_ObjectHideFlags: 0
@@ -244,7 +244,6 @@ GameObject:
   - component: {fileID: 3477103703060128827}
   - component: {fileID: 1695350913542533542}
   - component: {fileID: 5914714665884157475}
-  - component: {fileID: 17074375563768749}
   m_Layer: 0
   m_Name: spikes
   m_TagString: Untagged
@@ -373,18 +372,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.03, y: 0.61}
   m_EdgeRadius: 0
---- !u!114 &17074375563768749
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5588077749422683884}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ed744572430f2a4fa13419d12f80c9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HazardsTrap
 --- !u!1 &8124340279662222957
 GameObject:
   m_ObjectHideFlags: 0
@@ -396,7 +383,6 @@ GameObject:
   - component: {fileID: 2289455995847864601}
   - component: {fileID: 3058399009420589028}
   - component: {fileID: 6367860903205102443}
-  - component: {fileID: 7825553678210252155}
   m_Layer: 0
   m_Name: spikes (2)
   m_TagString: Untagged
@@ -525,15 +511,3 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.03, y: 0.61}
   m_EdgeRadius: 0
---- !u!114 &7825553678210252155
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8124340279662222957}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ed744572430f2a4fa13419d12f80c9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HazardsTrap

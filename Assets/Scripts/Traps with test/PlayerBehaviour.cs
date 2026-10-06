@@ -1,14 +1,14 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerBehaviour : MonoBehaviour
+public class PlayerBehaviour : MonoBehaviour, IDamagable
 {
     public Rigidbody2D rb;
     public float moveSpeed = 5f;
     public int currentHp;
     public int maxHp = 100;
     public float horizontalMovement;
-    [SerializeField] public float pushPower = 2.0f;
+    [SerializeField] public float pushPower = 1.0f;
 
         // SerializeField is used to avoid other scripts from accessing that variable, that we want it to be visible in the inspector (usually private)
 
