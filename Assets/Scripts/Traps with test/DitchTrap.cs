@@ -4,6 +4,7 @@ public class DitchTrap : AbstractTrap
 {
     int damage = 33;
 
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     
         public override void ApplyDamageToPlayer(IDamagable damagable)
@@ -25,8 +26,10 @@ public class DitchTrap : AbstractTrap
 
         void OnCollisionEnter2D(Collision2D col)
         {
-            
-            Debug.Log("The trap has been touched!");
+            if (col.transform.tag == "Boulder") 
+                Debug.Log("The trap has been touched by the boulder!");
+            else 
+                Debug.Log("The trap has been touched!");
             if (col.gameObject.GetComponent<IDamagable>() == null) return;
             ApplyDamageToPlayer(col.gameObject.GetComponent<IDamagable>());
             

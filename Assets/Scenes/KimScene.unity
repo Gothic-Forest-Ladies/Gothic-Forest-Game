@@ -146,7 +146,7 @@ Transform:
   m_GameObject: {fileID: 189670488}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.46, y: -0.03, z: 0}
+  m_LocalPosition: {x: 7.476, y: -0.03, z: 0}
   m_LocalScale: {x: 5.33, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -382,7 +382,7 @@ Transform:
   m_GameObject: {fileID: 621445198}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.58, y: -3.41, z: 0}
+  m_LocalPosition: {x: -1.06, y: -3.41, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -854,7 +854,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.04, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -864,7 +864,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.94, y: 1}
   m_EdgeRadius: 0
 --- !u!1 &1368670315
 GameObject:
@@ -880,7 +880,7 @@ GameObject:
   - component: {fileID: 1368670320}
   m_Layer: 6
   m_Name: Boulder (movable)
-  m_TagString: Untagged
+  m_TagString: Boulder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -954,8 +954,8 @@ Transform:
   m_GameObject: {fileID: 1368670315}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.75, y: -3.48, z: 0}
-  m_LocalScale: {x: 1.31, y: 1, z: 1}
+  m_LocalPosition: {x: 1.09, y: -3.41, z: 0}
+  m_LocalScale: {x: 1.5, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1018,10 +1018,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 3
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 5
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -1240,11 +1240,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7244989216809940743, guid: beeb7845888345f4f989f2b06bfc1d48, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.76
+      value: 1.7
       objectReference: {fileID: 0}
     - target: {fileID: 7244989216809940743, guid: beeb7845888345f4f989f2b06bfc1d48, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.7
+      value: 3.683
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
