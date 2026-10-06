@@ -12,9 +12,14 @@ public abstract class AbstractTrap : MonoBehaviour, IDamagable
     //layerMask whatIDamage //optional implementation
 
     //3
-    public void ApplyDamage(int damage)
+    public virtual void ApplyDamage(int damage)
     {
         Debug.Log($"There was {damage} damage done! ");
+    }
+
+     public virtual void Die()
+    {
+        // Place holder - decide what happens on death (?)
     }
 
     //public abstract void Die();

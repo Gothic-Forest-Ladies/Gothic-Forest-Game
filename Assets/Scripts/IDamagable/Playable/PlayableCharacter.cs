@@ -9,6 +9,7 @@ public abstract class PlayableCharacter : MonoBehaviour, IDamagable
     [SerializeField] public int maxHp;
     [SerializeField] public int currentHp; //v 
     
+    // SerializeField is used to avoid other scripts from accessing that variable, that we want it to be visible in the inspector (usually private) - Kim.
     
     public virtual void ApplyDamage(int damage) //for now we dont know, maybe take 1 hp
     {
