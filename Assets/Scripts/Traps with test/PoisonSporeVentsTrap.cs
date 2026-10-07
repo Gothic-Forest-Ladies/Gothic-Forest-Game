@@ -1,36 +1,35 @@
 using UnityEngine;
 
-public class DitchTrap : AbstractTrap
+public class PoisonSporeVentsTrap : AbstractTrap
 {
     int damage = 33;
 
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    
-        public override void ApplyDamageToPlayer(IDamagable damagable)
+     public override void ApplyDamageToPlayer(IDamagable damagable)
         {
             damagable.ApplyDamage(damage);
             Debug.Log("There was damage done! A player heart is lost!");
+            //Die();
         }
 
         public override void Die()
         {
             // placeholder until we figure out how the trap "dies"
+
         }
 
         public override void ApplyDamage(int damage)
         {
             // insert apply damage to player health logic here
-
         }
 
-        void OnCollisionEnter2D(Collision2D col)
+         void OnCollisionEnter2D(Collision2D col)
         {
-            if (col.transform.tag == "Boulder") {
-                Debug.Log("The trap has been touched by the boulder!");
+           if (col.transform.tag == "Mouse") {
+                Debug.Log("The trap has been touched by the Mouse!");
             }
             else {
-                Debug.Log("The trap has been touched! Any Character will get hurt!");
+                Debug.Log("The trap has been touched! Wrong Character! (Bird/Bear)");
                 ApplyDamageToPlayer(col.gameObject.GetComponent<IDamagable>());
             }
             if (col.gameObject.GetComponent<IDamagable>() == null) return;
@@ -39,8 +38,8 @@ public class DitchTrap : AbstractTrap
             // insert player knockback effect logic
 
             // insert player health reduction upon collision 
-            // (decrease one 1 heart with contact with any character since only the boulder needs to touch it)
-
+            // (decrease one 1 heart with contact with the wrong character (bird, bear) since the mouse needs to go inside and cross it)
+            
 
         }
 
@@ -51,6 +50,4 @@ public class DitchTrap : AbstractTrap
             //??
         }
     */
-
-
-        }
+}
