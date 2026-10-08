@@ -2,7 +2,9 @@ using UnityEngine;
 
 public class DitchTrap : AbstractTrap
 {
-    int damage = 33;
+    public int damage = 100;
+    public GameObject player;
+
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -21,6 +23,7 @@ public class DitchTrap : AbstractTrap
         public override void ApplyDamage(int damage)
         {
             // insert apply damage to player health logic here
+            player.GetComponent<PlayerBehaviour>().ApplyDamage(damage);
 
         }
 
@@ -31,9 +34,9 @@ public class DitchTrap : AbstractTrap
             }
             else {
                 Debug.Log("The trap has been touched! Any Character will get hurt!");
+                if (col.gameObject.GetComponent<IDamagable>() == null) return;
                 ApplyDamageToPlayer(col.gameObject.GetComponent<IDamagable>());
             }
-            if (col.gameObject.GetComponent<IDamagable>() == null) return;
             
 
             // insert player knockback effect logic

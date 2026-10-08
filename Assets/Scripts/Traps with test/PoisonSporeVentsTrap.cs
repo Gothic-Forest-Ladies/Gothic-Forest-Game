@@ -2,7 +2,9 @@ using UnityEngine;
 
 public class PoisonSporeVentsTrap : AbstractTrap
 {
-    int damage = 33;
+    public int damage = 100;
+    public GameObject player;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
      public override void ApplyDamageToPlayer(IDamagable damagable)
@@ -19,8 +21,10 @@ public class PoisonSporeVentsTrap : AbstractTrap
         }
 
         public override void ApplyDamage(int damage)
-        {
+        {   
             // insert apply damage to player health logic here
+            // playerScript = player.GetComponent<PlayerBehaviour>();
+            player.GetComponent<PlayerBehaviour>().ApplyDamage(damage);
         }
 
          void OnCollisionEnter2D(Collision2D col)
@@ -30,9 +34,9 @@ public class PoisonSporeVentsTrap : AbstractTrap
             }
             else {
                 Debug.Log("The trap has been touched! Wrong Character! (Bird/Bear)");
+                if (col.gameObject.GetComponent<IDamagable>() == null) return;
                 ApplyDamageToPlayer(col.gameObject.GetComponent<IDamagable>());
             }
-            if (col.gameObject.GetComponent<IDamagable>() == null) return;
             
 
             // insert player knockback effect logic

@@ -35,11 +35,12 @@ public class PlayerBehaviour : MonoBehaviour, IDamagable
 
     public virtual void Die()
     {
+        Debug.Log("The player has died ): Game over");
         // Place holder - decide what happens on death (respawn, game over, animation)
     }
 
-    public virtual void ApplyDamage(int damage) //for now we dont know, maybe take 1 hp
-    {
+    public virtual void ApplyDamage(int damage) //for now we dont know, maybe take 1 hp 
+    { // take damage from trap
         currentHp -= damage;
         if (currentHp <= 0)
         {
