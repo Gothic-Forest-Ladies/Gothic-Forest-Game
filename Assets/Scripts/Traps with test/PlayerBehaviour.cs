@@ -4,9 +4,9 @@ using UnityEngine.InputSystem;
 public class PlayerBehaviour : MonoBehaviour, IDamagable
 {
     public Rigidbody2D rb;
-    public float moveSpeed = 5f;
-    public int currentHp;
-    public int maxHp = 100;
+    [SerializeField] public float moveSpeed = 5f;
+    [SerializeField] public int currentHp;
+    [SerializeField] public int maxHp = 100;
     public float horizontalMovement;
     [SerializeField] public float pushPower = 1.0f;
 
