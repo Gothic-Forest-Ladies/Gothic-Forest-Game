@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 340
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -72,10 +72,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -96,6 +96,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -103,20 +116,218 @@ TextureImporter:
       name: bear_push_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 6552
-        height: 2622
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 12
+        y: 1323
+        width: 1286
+        height: 1287
+      alignment: 9
+      pivot: {x: 0.5, y: 0.22}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f209548a77ea333f0800000000000000
+      spriteID: bd4895c32f3104185ac0cda5cd76abe3
       internalID: -922201669733347281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bear_push_1
+      rect:
+        serializedVersion: 2
+        x: 1322
+        y: 1323
+        width: 1287
+        height: 1287
+      alignment: 9
+      pivot: {x: 0.5, y: 0.22}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f40db8bcbaaf0452badbeeb672c7cd66
+      internalID: 839770608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bear_push_2
+      rect:
+        serializedVersion: 2
+        x: 2633
+        y: 1323
+        width: 1286
+        height: 1287
+      alignment: 9
+      pivot: {x: 0.5, y: 0.22}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 778a77487b54046c48dc85b21f89ed4c
+      internalID: 1331085334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bear_push_3
+      rect:
+        serializedVersion: 2
+        x: 3943
+        y: 1323
+        width: 1287
+        height: 1287
+      alignment: 9
+      pivot: {x: 0.5, y: 0.22}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3d75c4be3f9d45daaea1a95f972183f
+      internalID: -1795690853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bear_push_4
+      rect:
+        serializedVersion: 2
+        x: 5254
+        y: 1323
+        width: 1286
+        height: 1287
+      alignment: 9
+      pivot: {x: 0.5, y: 0.22}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80f3cc39987fb486eaeb3ae45f0ce5b6
+      internalID: 1677941448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bear_push_5
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 12
+        width: 1286
+        height: 1287
+      alignment: 9
+      pivot: {x: 0.5, y: 0.22}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68469a7ac90124651b84e1423e519902
+      internalID: -1388099729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bear_push_6
+      rect:
+        serializedVersion: 2
+        x: 1322
+        y: 12
+        width: 1287
+        height: 1287
+      alignment: 9
+      pivot: {x: 0.5, y: 0.22}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4820e37a2467c4e06bffff5f2d9c015d
+      internalID: 865681666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bear_push_7
+      rect:
+        serializedVersion: 2
+        x: 2633
+        y: 12
+        width: 1286
+        height: 1287
+      alignment: 9
+      pivot: {x: 0.5, y: 0.22}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e827261452c3425d9fa57a60d2ebd54
+      internalID: 631751252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bear_push_8
+      rect:
+        serializedVersion: 2
+        x: 3943
+        y: 12
+        width: 1287
+        height: 1287
+      alignment: 9
+      pivot: {x: 0.5, y: 0.22}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5af1a32df71c740bf9b437e1c1e158a7
+      internalID: 76927124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bear_push_9
+      rect:
+        serializedVersion: 2
+        x: 5254
+        y: 12
+        width: 1286
+        height: 1287
+      alignment: 9
+      pivot: {x: 0.5, y: 0.22}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efc5e6a1cb0604710b83b85d167fcfe9
+      internalID: 1945537603
       vertices: []
       indices: 
       edges: []
@@ -125,7 +336,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 8cd36f5aa6c6f475f91caebf9b7e1097
     internalID: 0
     vertices: []
     indices: 
@@ -136,6 +347,15 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       bear_push_0: -922201669733347281
+      bear_push_1: 839770608
+      bear_push_2: 1331085334
+      bear_push_3: -1795690853
+      bear_push_4: 1677941448
+      bear_push_5: -1388099729
+      bear_push_6: 865681666
+      bear_push_7: 631751252
+      bear_push_8: 76927124
+      bear_push_9: 1945537603
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
