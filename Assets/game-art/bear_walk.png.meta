@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 340
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -72,10 +72,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -96,6 +96,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -103,20 +116,130 @@ TextureImporter:
       name: bear_walk_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 3933
-        height: 2621
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 12
+        y: 1323
+        width: 1287
+        height: 1286
+      alignment: 9
+      pivot: {x: 0.5, y: 0.22}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e1b6a776fc9d58390800000000000000
+      spriteID: bb9caa831fc67445784ab75acf2aa25e
       internalID: -7816602093414094050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bear_walk_1
+      rect:
+        serializedVersion: 2
+        x: 1323
+        y: 1323
+        width: 1287
+        height: 1286
+      alignment: 9
+      pivot: {x: 0.5, y: 0.22}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3279d8c26c1e64e09b32da8c4df0d2f3
+      internalID: -211184078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bear_walk_2
+      rect:
+        serializedVersion: 2
+        x: 2634
+        y: 1323
+        width: 1287
+        height: 1286
+      alignment: 9
+      pivot: {x: 0.5, y: 0.22}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a29a8411ea834286b014fa6c6263a1b
+      internalID: -258237484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bear_walk_3
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 12
+        width: 1287
+        height: 1287
+      alignment: 9
+      pivot: {x: 0.5, y: 0.22}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22caa706e3b484d898044048fde6f079
+      internalID: 2007239090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bear_walk_4
+      rect:
+        serializedVersion: 2
+        x: 1323
+        y: 12
+        width: 1287
+        height: 1287
+      alignment: 9
+      pivot: {x: 0.5, y: 0.22}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8cc1b80d419b4ba394f35a4589c4ef5
+      internalID: -1546094239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bear_walk_5
+      rect:
+        serializedVersion: 2
+        x: 2634
+        y: 12
+        width: 1287
+        height: 1287
+      alignment: 9
+      pivot: {x: 0.5, y: 0.22}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43aeb087d02684affa961bd135eb37c6
+      internalID: -129537261
       vertices: []
       indices: 
       edges: []
@@ -125,7 +248,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 7496f2f7c000c4a5cad73b4195848896
     internalID: 0
     vertices: []
     indices: 
@@ -136,6 +259,11 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       bear_walk_0: -7816602093414094050
+      bear_walk_1: -211184078
+      bear_walk_2: -258237484
+      bear_walk_3: 2007239090
+      bear_walk_4: -1546094239
+      bear_walk_5: -129537261
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
