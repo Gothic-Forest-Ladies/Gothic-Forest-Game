@@ -8,7 +8,10 @@ public class PlayerBehaviour : MonoBehaviour, IDamagable
     [SerializeField] public int currentHp;
     [SerializeField] public int maxHp = 100;
     public float horizontalMovement;
-    [SerializeField] public float pushPower = 1.0f;
+    [SerializeField] public float pushPower = 1.0f; // only for bear
+    [SerializeField] public float jumpForce = 8f;
+
+
 
         // SerializeField is used to avoid other scripts from accessing that variable, that we want it to be visible in the inspector (usually private)
 
@@ -32,6 +35,12 @@ public class PlayerBehaviour : MonoBehaviour, IDamagable
         horizontalMovement = context.ReadValue<Vector2>().x;
 
     }
+
+    public virtual void Jump(Rigidbody2D rb)
+        {
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+        }
+
 
     public virtual void Die()
     {

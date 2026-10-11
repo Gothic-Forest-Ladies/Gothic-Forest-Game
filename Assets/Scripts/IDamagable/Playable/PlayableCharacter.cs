@@ -1,16 +1,32 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public abstract class PlayableCharacter : MonoBehaviour, IDamagable
 {
     
     // PlayableCharacter Variables / Ola 24.9.26
+    // Changes and additions / Kim 10.10.26
     [SerializeField] public float speed = 5f;
     [SerializeField] public float jumpForce = 8f;
-    [SerializeField] public int maxHp;
+    [SerializeField] public int maxHp = 100; // 3 hearts
     [SerializeField] public int currentHp; //v 
+    [SerializeField] public float horizontalMovement;
+    //public Rigidbody2D rb; 
     
-    // SerializeField is used to avoid other scripts from accessing that variable, that we want it to be visible in the inspector (usually private) - Kim.
-    
+    //  Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        //set hp and maybe speed to default state?
+        currentHp = maxHp;
+    }
+
+    void Update()
+    {
+        //rb.linearVelocity = new Vector2(horizontalMovement * speed, rb.linearVelocity.y);
+
+    }
+
+    // IDamagable Interface Implementation
     public virtual void ApplyDamage(int damage) //for now we dont know, maybe take 1 hp
     {
         currentHp -= damage;
@@ -19,24 +35,37 @@ public abstract class PlayableCharacter : MonoBehaviour, IDamagable
             Die();
         }
     }
+
     // "die()" will probably move to the player itself, this one is just an abstract class for playable characters
     public virtual void Die()
     {
         // Place holder - decide what happens on death (respawn, game over, animation)
     }
 
+    public abstract void ApplyDamageToTrap(IDamagable damagable); // apply dmg to trap (?)
 
+
+    // will also move over to the actual character itself
     public virtual void SpecialAbility()
     {
         // Implementation for special ability
     }
     
-    //  Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    
+    // new Move
+    /*
+     public void Move(InputAction.CallbackContext context)
     {
-        //set hp and maybe speed to default state?
-        currentHp = maxHp;
+        horizontalMovement = context.ReadValue<Vector2>().x;
+
+    }*/
+
+    public virtual void Jump(Rigidbody2D rb)
+    {
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);    
     }
+
+
 
     public virtual void Movement(Rigidbody2D rb, float horizontalInput)
     {
@@ -47,9 +76,7 @@ public abstract class PlayableCharacter : MonoBehaviour, IDamagable
         else if (horizontalInput < 0)
             transform.localScale = new Vector3(-1, 1, 1);
     }
-        public virtual void Jump(Rigidbody2D rb)
-    {
-        rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-    }
+    
+    
 
 }
