@@ -16,8 +16,10 @@ public class BearAnimationDriver : MonoBehaviour
     Animator animator;
     SpriteRenderer sprite;
     Collider2D bodyCollider;
+    PlayerBehaviour input;
     int facing = 1; // 1 = right (art faces right), -1 = left
-    float lastX;
+    float lastFixedX;
+    bool measuredMoving;
 
     void Awake()
     {
@@ -25,24 +27,33 @@ public class BearAnimationDriver : MonoBehaviour
         animator = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
         bodyCollider = GetComponent<Collider2D>();
-        lastX = transform.position.x;
+        input = GetComponent<PlayerBehaviour>();
+        lastFixedX = transform.position.x;
+    }
+
+    // measured movement, not input velocity, so pressing against a wall reads as standing still.
+    // Measured on the physics clock: the rigidbody only moves the transform on fixed steps,
+    // so per-render-frame deltas read zero on most frames at high framerates.
+    void FixedUpdate()
+    {
+        float measuredVx = (transform.position.x - lastFixedX) / Time.fixedDeltaTime;
+        lastFixedX = transform.position.x;
+        measuredMoving = Mathf.Abs(measuredVx) > walkThreshold;
     }
 
     void Update()
     {
-        // measured movement, not input velocity, so pressing against a wall reads as standing still
-        float measuredVx = Time.deltaTime > 0f ? (transform.position.x - lastX) / Time.deltaTime : 0f;
-        lastX = transform.position.x;
-        bool moving = Mathf.Abs(measuredVx) > walkThreshold;
+        bool moving = measuredMoving;
 
-        float inputVx = rb.linearVelocity.x;
-        if (Mathf.Abs(inputVx) > walkThreshold)
+        float inputX = input != null ? input.horizontalMovement : rb.linearVelocity.x;
+        if (Mathf.Abs(inputX) > 0.1f)
         {
-            facing = inputVx > 0f ? 1 : -1;
+            facing = inputX > 0f ? 1 : -1;
             sprite.flipX = facing < 0;
         }
 
-        bool pushing = moving && TouchingBoulderAhead();
+        // pushing = leaning into the boulder, even while the push is stalled or slow
+        bool pushing = Mathf.Abs(inputX) > 0.1f && TouchingBoulderAhead();
 
         animator.SetBool("isWalking", moving && !pushing);
         animator.SetBool("isPushing", pushing);

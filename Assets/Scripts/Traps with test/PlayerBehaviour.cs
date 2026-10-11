@@ -5,6 +5,8 @@ public class PlayerBehaviour : MonoBehaviour, IDamagable
 {
     public Rigidbody2D rb;
     [SerializeField] public float moveSpeed = 5f;
+    [SerializeField] public float acceleration = 7f;   // units/sec^2 while speeding up - low value = heavy bear
+    [SerializeField] public float deceleration = 10f;  // units/sec^2 while stopping
     [SerializeField] public int currentHp;
     [SerializeField] public int maxHp = 100;
     public float horizontalMovement;
@@ -27,7 +29,11 @@ public class PlayerBehaviour : MonoBehaviour, IDamagable
     // Update is called once per frame
     void Update()
     {
-        rb.linearVelocity = new Vector2(horizontalMovement * moveSpeed, rb.linearVelocity.y);
+        // ramp toward the target speed instead of snapping to it, so the bear feels heavy
+        float targetVx = horizontalMovement * moveSpeed;
+        float rate = Mathf.Abs(targetVx) > 0.01f ? acceleration : deceleration;
+        float vx = Mathf.MoveTowards(rb.linearVelocity.x, targetVx, rate * Time.deltaTime);
+        rb.linearVelocity = new Vector2(vx, rb.linearVelocity.y);
     }
 
     public void Move(InputAction.CallbackContext context)
