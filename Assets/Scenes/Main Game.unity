@@ -281,6 +281,54 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 9caa3d8a-6b2f-4e8e-8bad-6ede561bd9be
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 53635335}
+        m_TargetAssemblyTypeName: CharacterSwitcher, Assembly-CSharp
+        m_MethodName: SelectCharacter
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 4138acb4-0b7e-4743-80ce-c51566f0c6ef
+    m_ActionName: 'Player/SelectBear[/Keyboard/1]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 53635335}
+        m_TargetAssemblyTypeName: CharacterSwitcher, Assembly-CSharp
+        m_MethodName: SelectCharacter
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 506ea793-62ff-433d-bc36-724fa4c4243c
+    m_ActionName: 'Player/SelectOwl[/Keyboard/2]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 53635335}
+        m_TargetAssemblyTypeName: CharacterSwitcher, Assembly-CSharp
+        m_MethodName: SelectCharacter
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 20f71dac-05d8-4f34-953a-d12959d35e07
+    m_ActionName: 'Player/SelectHedgehog[/Keyboard/3]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -298,7 +346,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d80bf5b097804f74a9267ff2e253841f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterMovement
-  currentCharacter: {fileID: 1150375994}
   horizontalMovement: 0
 --- !u!114 &53635335
 MonoBehaviour:
@@ -1925,7 +1972,7 @@ GameObject:
   - component: {fileID: 994509657}
   - component: {fileID: 994509656}
   m_Layer: 0
-  m_Name: Hedgehog (mouse)
+  m_Name: Hedgehog
   m_TagString: Mouse
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2676,7 +2723,7 @@ GameObject:
   - component: {fileID: 1150375995}
   - component: {fileID: 1150375994}
   m_Layer: 0
-  m_Name: Owl (bird)
+  m_Name: 'Owl '
   m_TagString: Bird
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3827,7 +3874,7 @@ Transform:
   m_GameObject: {fileID: 1733821439}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -36.67, y: 0, z: 0}
+  m_LocalPosition: {x: -36.63, y: 0, z: 0}
   m_LocalScale: {x: 1.55, y: 1.55, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
