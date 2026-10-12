@@ -4,12 +4,14 @@ using UnityEngine.InputSystem;
 public class CharacterMovement : MonoBehaviour
 {
     public PlayableCharacter currentCharacter;
+   //CharacterSwitcher activeCharacter;
     public float horizontalMovement;
     //public Rigidbody2D rb;
     Rigidbody2D rb;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
-    {
+    {   
+        //currentCharacter = 
         rb = currentCharacter.GetComponent<Rigidbody2D>();
         Debug.Log(rb);
     }
