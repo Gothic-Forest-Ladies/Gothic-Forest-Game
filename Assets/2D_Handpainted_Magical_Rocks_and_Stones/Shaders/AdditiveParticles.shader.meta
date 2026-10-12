@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: f22e9f198de35a64b8c92c165d52be1f
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  preprocessorOverride: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 260209
+  packageName: 2D Hand-painted Magical Rocks and Stones Free
+  packageVersion: 1.0.0
+  assetPath: Assets/2D_Handpainted_Magical_Rocks_and_Stones/Shaders/AdditiveParticles.shader
+  uploadId: 600153

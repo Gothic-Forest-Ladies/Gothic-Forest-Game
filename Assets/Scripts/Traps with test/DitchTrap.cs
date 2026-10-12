@@ -23,7 +23,7 @@ public class DitchTrap : AbstractTrap
         public override void ApplyDamage(int damage)
         {
             // insert apply damage to player health logic here
-            player.GetComponent<PlayerBehaviour>().ApplyDamage(damage);
+            player.GetComponent<Bear>().ApplyDamage(damage);
 
         }
 
