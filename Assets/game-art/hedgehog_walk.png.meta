@@ -103,10 +103,10 @@ TextureImporter:
       name: hedgehog_walk_0
       rect:
         serializedVersion: 2
-        x: 154
-        y: 1771
-        width: 1182
-        height: 808
+        x: 24
+        y: 1510
+        width: 1418
+        height: 1396
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -125,10 +125,10 @@ TextureImporter:
       name: hedgehog_walk_1
       rect:
         serializedVersion: 2
-        x: 1630
-        y: 1731
-        width: 1176
-        height: 826
+        x: 1508
+        y: 1499
+        width: 1407
+        height: 1401
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -147,10 +147,10 @@ TextureImporter:
       name: hedgehog_walk_2
       rect:
         serializedVersion: 2
-        x: 3050
-        y: 1729
-        width: 1244
-        height: 820
+        x: 2965
+        y: 1504
+        width: 1401
+        height: 1402
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -169,10 +169,10 @@ TextureImporter:
       name: hedgehog_walk_3
       rect:
         serializedVersion: 2
-        x: 161
-        y: 321
-        width: 1187
-        height: 809
+        x: 57
+        y: 59
+        width: 1374
+        height: 1390
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -191,13 +191,13 @@ TextureImporter:
       name: hedgehog_walk_4
       rect:
         serializedVersion: 2
-        x: 1603
-        y: 332
-        width: 1244
-        height: 775
+        x: 1508
+        y: 48
+        width: 1396
+        height: 1390
       alignment: 7
       pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 23, w: 11}
+      border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
@@ -213,10 +213,10 @@ TextureImporter:
       name: hedgehog_walk_5
       rect:
         serializedVersion: 2
-        x: 3044
-        y: 316
-        width: 1210
-        height: 797
+        x: 2960
+        y: 42
+        width: 1384
+        height: 1412
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -245,7 +245,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":3.0,"y":2.0},"gridSpriteSize":{"x":1286.0,"y":986.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":3.0,"y":2.0},"gridSpriteSize":{"x":1465.0,"y":1465.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
       - key: SpriteEditor.SliceOnImport
         value: False
     nameFileIdTable:

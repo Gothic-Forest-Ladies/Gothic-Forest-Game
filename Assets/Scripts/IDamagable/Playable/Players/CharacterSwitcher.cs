@@ -8,8 +8,8 @@ public class CharacterSwitcher : MonoBehaviour
 
     public PlayableCharacter ActiveCharacter => characters[currentIndex]; // It lets other scripts ask which character is selected
 
-    //private PlayableCharacter oldCharacter;
-    //private PlayableCharacter newCharacter;
+    private PlayableCharacter oldCharacter;
+    private PlayableCharacter newCharacter;
 
     void Start()
     {
@@ -34,10 +34,12 @@ public class CharacterSwitcher : MonoBehaviour
         }
             
         
-        PlayableCharacter oldCharacter = ActiveCharacter;
+        oldCharacter = ActiveCharacter;
         oldCharacter.gameObject.SetActive(false); 
         currentIndex = index;
-        PlayableCharacter newCharacter = ActiveCharacter;
+        newCharacter = ActiveCharacter;
+        newCharacter.gameObject.transform.position = oldCharacter.gameObject.transform.position; 
+        // making sure the new character appears from the old's coordinates
         newCharacter.gameObject.SetActive(true);
         
         }

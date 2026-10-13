@@ -24,8 +24,9 @@ public class CharacterMovement : MonoBehaviour
     {
         currentCharacter.Movement(rb, horizontalMovement); 
         // need to update current character when switching happens
-        currentCharacter = characterSwitcher.ActiveCharacter; // get the active character from the CharacterSwitcher script (checks if it was switched-> it updated)
-        rb = currentCharacter.GetComponent<Rigidbody2D>(); // get its rb to change velocity
+        currentCharacter = characterSwitcher.ActiveCharacter; // get the active character from the CharacterSwitcher script 
+        // (checks if it was switched-> it updated)
+        rb = currentCharacter.GetComponent<Rigidbody2D>(); // get its rb to change velocity (in case it was switched)
     }
 
     // Reads the keyboard input from Unity's Input System, such as pressing left or right.
