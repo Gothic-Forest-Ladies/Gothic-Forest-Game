@@ -4,13 +4,16 @@ using UnityEngine.InputSystem;
 public class PlayerBehaviour : MonoBehaviour, IDamagable
 {
     public Rigidbody2D rb;
-    public float moveSpeed = 3.2f;
-    public float acceleration = 7f;   // units/sec^2 while speeding up - low value = heavy bear
-    public float deceleration = 10f;  // units/sec^2 while stopping
-    public int currentHp;
-    public int maxHp = 100;
+    [SerializeField] public float moveSpeed = 5f;
+    [SerializeField] public float acceleration = 7f;   // units/sec^2 while speeding up - low value = heavy bear
+    [SerializeField] public float deceleration = 10f;  // units/sec^2 while stopping
+    [SerializeField] public int currentHp;
+    [SerializeField] public int maxHp = 100;
     public float horizontalMovement;
-    [SerializeField] public float pushPower = 1.0f;
+    [SerializeField] public float pushPower = 1.0f; // only for bear
+    [SerializeField] public float jumpForce = 8f;
+
+
 
         // SerializeField is used to avoid other scripts from accessing that variable, that we want it to be visible in the inspector (usually private)
 
@@ -38,6 +41,12 @@ public class PlayerBehaviour : MonoBehaviour, IDamagable
         horizontalMovement = context.ReadValue<Vector2>().x;
 
     }
+
+    public virtual void Jump(Rigidbody2D rb)
+        {
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+        }
+
 
     public virtual void Die()
     {

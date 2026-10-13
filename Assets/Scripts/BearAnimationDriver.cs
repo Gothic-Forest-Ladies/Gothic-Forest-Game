@@ -16,7 +16,7 @@ public class BearAnimationDriver : MonoBehaviour
     Animator animator;
     SpriteRenderer sprite;
     Collider2D bodyCollider;
-    PlayerBehaviour input;
+    CharacterMovement input;
     int facing = 1; // 1 = right (art faces right), -1 = left
     float lastFixedX;
     bool measuredMoving;
@@ -27,7 +27,7 @@ public class BearAnimationDriver : MonoBehaviour
         animator = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
         bodyCollider = GetComponent<Collider2D>();
-        input = GetComponent<PlayerBehaviour>();
+        input = GetComponentInParent<CharacterMovement>();
         lastFixedX = transform.position.x;
     }
 

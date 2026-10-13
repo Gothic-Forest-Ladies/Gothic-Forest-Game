@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 58b7dbd983fa78948a9586ef34df696c
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 260209
+  packageName: 2D Hand-painted Magical Rocks and Stones Free
+  packageVersion: 1.0.0
+  assetPath: Assets/2D_Handpainted_Magical_Rocks_and_Stones/Scripts/AddColorEffect.cs
+  uploadId: 600153

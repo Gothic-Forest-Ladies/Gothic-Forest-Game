@@ -1663,6 +1663,7 @@ MonoBehaviour:
   jumpForce: 8
   maxHp: 5
   currentHp: 5
+  horizontalMovement: 0
 --- !u!1 &665766770
 GameObject:
   m_ObjectHideFlags: 0
@@ -5886,6 +5887,7 @@ MonoBehaviour:
   jumpForce: 8
   maxHp: 0
   currentHp: 0
+  horizontalMovement: 0
 --- !u!1 &937654316
 GameObject:
   m_ObjectHideFlags: 0
@@ -7089,6 +7091,7 @@ MonoBehaviour:
   jumpForce: 8
   maxHp: 0
   currentHp: 0
+  horizontalMovement: 0
 --- !u!1 &1827580132
 GameObject:
   m_ObjectHideFlags: 0
