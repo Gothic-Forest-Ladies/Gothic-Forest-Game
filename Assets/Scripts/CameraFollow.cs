@@ -2,6 +2,7 @@ using UnityEngine;
 
 /// Smoothly follows the player horizontally, clamped to the level bounds.
 /// Looks ahead in the walk direction so the player sees where they are going.
+/// Fixed a bug where the camera was only followin the bear, not the other characters. (17.10.26, Ola)
 public class CameraFollow : MonoBehaviour
 {
     public Transform target;
@@ -11,11 +12,14 @@ public class CameraFollow : MonoBehaviour
     public float fixedY = -1.3f;
     public float minX = -13.5f;
     public float maxX = 27.9f;
+    public CharacterSwitcher switcher;
 
     Vector3 velocity;
     Rigidbody2D targetRb;
     float look;
 
+    /*
+    // Old version, before the character switcher was implemented. (17.10.26, Ola)
     void Start()
     {
         if (target == null)
@@ -25,9 +29,24 @@ public class CameraFollow : MonoBehaviour
         }
         if (target != null) targetRb = target.GetComponent<Rigidbody2D>();
     }
+    */
+
+    // New - with the character switcher, we need to update the target when switching characters. (17.10.26, Ola)
+    void Start()
+    {
+        if (switcher == null)
+            switcher = FindAnyObjectByType<CharacterSwitcher>();
+    }
 
     void LateUpdate()
-    {
+    {   
+        if (switcher == null) return;
+        Transform active = switcher.ActiveCharacter.transform;
+        if (active != target)
+        {
+            target = active;
+            targetRb = target.GetComponent<Rigidbody2D>();
+        }
         if (target == null) return;
         float vx = targetRb != null ? targetRb.linearVelocity.x : 0f;
         // keep the last look direction while standing still so the camera doesn't drift back

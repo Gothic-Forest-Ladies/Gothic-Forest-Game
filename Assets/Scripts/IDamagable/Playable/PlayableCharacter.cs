@@ -6,6 +6,7 @@ public abstract class PlayableCharacter : MonoBehaviour, IDamagable
     
     // PlayableCharacter Variables / Ola 24.9.26
     // Changes and additions / Kim 10.10.26
+    // Added some changes for new characters / Ola 17.10.26
 
     [SerializeField] public float moveSpeed = 5f;
     [SerializeField] public int currentHp;
@@ -13,9 +14,10 @@ public abstract class PlayableCharacter : MonoBehaviour, IDamagable
     [SerializeField] public float horizontalMovement;
     [SerializeField] public float acceleration = 7f;   // units/sec^2 while speeding up - low value = heavy bear
     [SerializeField] public float deceleration = 10f;  // units/sec^2 while stopping
-    [SerializeField] public float jumpForce = 8f;
+    //[SerializeField] public float jumpForce = 8f;
     //public Rigidbody2D rb; 
     [SerializeField] public int damage = 100;
+    public virtual bool CanSwitchAway => true;
 
     
     //  Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -55,15 +57,18 @@ public abstract class PlayableCharacter : MonoBehaviour, IDamagable
     }
     
 
+    /*
+    // Jump was canceled, will probably delete it, but leaving it here for now in case we want to add it back in later
     public virtual void Jump(Rigidbody2D rb)
     {
           rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);    
     }
+    */
 
     // PlayableCharacter.Movement() moves the character.
     // BearAnimationDriver turns the sprite left or right.
     // Uses the horizontal input to update the active character's Rigidbody2D velocity.
-    public virtual void Movement(Rigidbody2D rb, float horizontalInput)
+    public virtual void Movement(Rigidbody2D rb, float horizontalInput, float verticalMovement)
     {
         //Debug.Log("Movement called");
         rb.linearVelocity = new Vector2(horizontalInput * moveSpeed, rb.linearVelocity.y);
