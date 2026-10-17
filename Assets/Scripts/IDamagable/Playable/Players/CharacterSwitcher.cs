@@ -32,6 +32,11 @@ public class CharacterSwitcher : MonoBehaviour
             Debug.Log("The character selected is already present!");
             return;
         }
+        if (!ActiveCharacter.CanSwitchAway) // Added to prevent switching away from a character that is in the middle of an action (like crawling in a tight space) (17.10.26, Ola)
+        {
+            Debug.Log("Can't switch right now!");
+            return;
+        }
             
         
         oldCharacter = ActiveCharacter;
