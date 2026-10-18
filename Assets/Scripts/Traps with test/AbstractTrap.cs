@@ -3,7 +3,7 @@ using UnityEngine;
 public abstract class AbstractTrap : MonoBehaviour, IDamagable 
 {
 
-    public int damage;
+    // public int damage;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     // child classes inheriting this will be forced to implement these methods

@@ -4,9 +4,7 @@ public class ThornPitTrap : AbstractTrap
 {   
     // The hazards trap will symbolize the thorn pit trap (for bird).
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    public GameObject player;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public int damage;
         public override void ApplyDamageToPlayer(IDamagable damagable)
         {
             damagable.ApplyDamage(damage);

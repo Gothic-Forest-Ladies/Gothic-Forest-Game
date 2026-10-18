@@ -2,9 +2,7 @@ using UnityEngine;
 
 public class PoisonSporeVentsTrap : AbstractTrap
 {
-    public GameObject player;
-
-
+    public int damage;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
      public override void ApplyDamageToPlayer(IDamagable damagable)
         {
