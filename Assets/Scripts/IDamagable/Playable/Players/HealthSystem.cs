@@ -36,7 +36,7 @@ public class HealthSystem : MonoBehaviour
             return;
         }
 
-        if (!isInvulnerable) 
+        if (!isInvulnerable) // vulnerable
         { 
             Debug.Log("[HealthSystem] Invulnerability started!");
             // Reduce shared health, without allowing negative HP.

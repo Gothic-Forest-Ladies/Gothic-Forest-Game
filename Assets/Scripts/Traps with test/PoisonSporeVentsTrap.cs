@@ -28,32 +28,32 @@ public class PoisonSporeVentsTrap : AbstractTrap
 
          void OnCollisionEnter2D(Collision2D col)
         {
-            Debug.Log($"[PoisonTrap] Time: {Time.time:F3}");
 
-            Debug.Log($"[PoisonTrap] Character Collider: {col.collider.name}, Type: {col.collider.GetType().Name}");
-
-            Debug.Log($"[PoisonTrap] Trap Collider: {col.otherCollider.name}, Type: {col.otherCollider.GetType().Name}");
-
-            Debug.Log($"[PoisonTrap] Contact Count: {col.contactCount}");
-
-            Debug.Log($"[PoisonTrap] Collision with: {col.gameObject.name}, " + $"Tag: {col.gameObject.tag}, " + 
-            $"IDamagable: {col.gameObject.GetComponent<IDamagable>() != null}");
-
-           if (col.transform.tag == "Hedgehog") {
+           // Hedgehog is immune to poison spores.
+            if (col.gameObject.CompareTag("Hedgehog"))
+            {
                 Debug.Log("The trap has been touched by the Hedgehog!");
+                return;
             }
-            else {
-                Debug.Log("The trap has been touched! Wrong Character! (Bird/Bear)");
-                if (col.gameObject.GetComponent<IDamagable>() == null) return;
-                ApplyDamageToPlayer(col.gameObject.GetComponent<IDamagable>());
-            }
-            
+           
+            IDamagable damagable = col.gameObject.GetComponent<IDamagable>();
 
-            // insert player knockback effect logic
+            if (damagable == null)
+                return;
 
-            // insert player health reduction upon collision 
-            // (decrease one 1 heart with contact with the wrong character (bird, bear) since the mouse needs to go inside and cross it)
-            
+            Debug.Log("The trap has been touched! Wrong Character! (Bird/Bear)");
+            ApplyDamageToPlayer(damagable);
+
+            // Knockback applies only to Bird/Bear playable characters.
+            PlayableCharacter character = col.gameObject.GetComponent<PlayableCharacter>();
+
+            if (character == null) // make sure we got the character
+                return;
+
+            float horizontalDirection = character.transform.position.x < transform.position.x ? -1f : 1f;
+            Vector2 direction = new Vector2(horizontalDirection, 1.5f);
+
+            character.Knockback(direction);
 
         }
 

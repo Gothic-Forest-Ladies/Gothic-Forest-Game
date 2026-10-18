@@ -1569,7 +1569,7 @@ MonoBehaviour:
   maxHp: 100
   horizontalMovement: 0
   damage: 100
-  knockbackForce: 20
+  knockbackForce: 25
   knockbackDuration: 0.2
   acceleration: 7
   deceleration: 10
@@ -2673,7 +2673,7 @@ MonoBehaviour:
   maxHp: 100
   horizontalMovement: 0
   damage: 100
-  knockbackForce: 20
+  knockbackForce: 23
   knockbackDuration: 0.2
   rb: {fileID: 1150375995}
   flightSpeed: 5

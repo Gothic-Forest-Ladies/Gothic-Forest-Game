@@ -45,7 +45,7 @@ public class ThornPitTrap : AbstractTrap
 
             // Push the character away from the trap.
            // Vector2 direction = Vector2.up;
-           float horizontalDirection = character.transform.position.x < transform.position.x ? -1f : 1f;
+            float horizontalDirection = character.transform.position.x < transform.position.x ? -1f : 1f;
             Vector2 direction = new Vector2(horizontalDirection, 1.5f);
 
             character.Knockback(direction);
