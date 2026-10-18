@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+
 
 public abstract class PlayableCharacter : MonoBehaviour, IDamagable
 {
@@ -7,17 +9,15 @@ public abstract class PlayableCharacter : MonoBehaviour, IDamagable
     // PlayableCharacter Variables / Ola 24.9.26
     // Changes and additions / Kim 10.10.26
     // Added some changes for new characters / Ola 17.10.26
+    // Updated changes for characters + HealthSystem / Kim 
 
     [SerializeField] public float moveSpeed = 5f;
-    [SerializeField] public int currentHp;
-    [SerializeField] public int maxHp = 100;
+    [SerializeField] private int currentHp;
+    [SerializeField] private int maxHp;
     [SerializeField] public float horizontalMovement;
-    [SerializeField] public float acceleration = 7f;   // units/sec^2 while speeding up - low value = heavy bear
-    [SerializeField] public float deceleration = 10f;  // units/sec^2 while stopping
-    //[SerializeField] public float jumpForce = 8f;
-    //public Rigidbody2D rb; 
-    [SerializeField] public int damage = 100;
+    [SerializeField] public int damage;
     public virtual bool CanSwitchAway => true;
+    HealthSystem healthSystem;
 
     
     //  Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -36,24 +36,38 @@ public abstract class PlayableCharacter : MonoBehaviour, IDamagable
     // IDamagable Interface Implementation
     public virtual void ApplyDamage(int damage) //take damage (?)
     {
-      //damage applied idk
+        healthSystem = GetComponentInParent<HealthSystem>();
+
+        if (healthSystem == null)
+        {
+            Debug.LogError("HealthSystem not found on Player!");
+            return;
+        }
+
+        healthSystem.TakeDamage(1);
     }
 
     // "die()" will probably move to the player itself, this one is just an abstract class for playable characters
     public virtual void Die()
     {
-        // Place holder - decide what happens on death (respawn, game over, animation)
         Debug.Log("The player has died ): Game over");
+        // insert scene reload logic.
+        Debug.Log("The player has died! Reloading scene...");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
     }
 
-    public abstract void TakeDamageFromTrap(IDamagable damagable); // take dmg from trap (?)
+    public virtual void TakeDamageFromTrap(IDamagable damagable)
+    {
+        damagable.ApplyDamage(damage);
+        Debug.Log("Damage was taken from trap! one heart lost! ");
+    }
 
 
     // will also move over to the actual character itself
     public virtual void SpecialAbility()
     {
-        // Implementation for special ability
+        // Implementation for special ability (each animal is different)
     }
     
 
@@ -67,7 +81,7 @@ public abstract class PlayableCharacter : MonoBehaviour, IDamagable
 
     // PlayableCharacter.Movement() moves the character.
     // BearAnimationDriver turns the sprite left or right.
-    // Uses the horizontal input to update the active character's Rigidbody2D velocity.
+    // rb Uses the horizontal input to update the active character's Rigidbody2D velocity.
     public virtual void Movement(Rigidbody2D rb, float horizontalInput, float verticalMovement)
     {
         //Debug.Log("Movement called");

@@ -2,10 +2,7 @@ using UnityEngine;
 
 public class DitchTrap : AbstractTrap
 {
-    public int damage = 100;
     public GameObject player;
-
-
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     
@@ -23,7 +20,7 @@ public class DitchTrap : AbstractTrap
         public override void ApplyDamage(int damage)
         {
             // insert apply damage to player health logic here
-            player.GetComponent<Bear>().ApplyDamage(damage);
+            //player.GetComponent<Bear>().ApplyDamage(damage);
 
         }
 

@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 53635332}
   - component: {fileID: 53635334}
   - component: {fileID: 53635335}
+  - component: {fileID: 53635336}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -364,6 +365,20 @@ MonoBehaviour:
   - {fileID: 621445210}
   - {fileID: 1150375994}
   - {fileID: 994509656}
+--- !u!114 &53635336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 53635330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28af0bd3a1a9fc4419bb4ec4fedcd3ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthSystem
+  maxHp: 3
+  currentHp: 0
 --- !u!1 &125197042
 GameObject:
   m_ObjectHideFlags: 0
@@ -648,7 +663,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.33, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5875862}
@@ -658,7 +673,7 @@ BoxCollider2D:
     drawMode: 2
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 5.55, y: 1}
+  m_Size: {x: 4.09, y: 1}
   m_EdgeRadius: 0
 --- !u!212 &189670491
 SpriteRenderer:
@@ -1630,9 +1645,9 @@ MonoBehaviour:
   currentHp: 0
   maxHp: 100
   horizontalMovement: 0
+  damage: 100
   acceleration: 7
   deceleration: 10
-  damage: 100
   pushPower: 2
   rb: {fileID: 621445207}
 --- !u!1 &726444636
@@ -1973,7 +1988,7 @@ GameObject:
   - component: {fileID: 994509656}
   m_Layer: 0
   m_Name: Hedgehog
-  m_TagString: Mouse
+  m_TagString: Hedgehog
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2069,8 +2084,6 @@ MonoBehaviour:
   currentHp: 0
   maxHp: 100
   horizontalMovement: 0
-  acceleration: 7
-  deceleration: 10
   damage: 100
   rb: {fileID: 994509658}
   rollScale: 0.5
@@ -2112,8 +2125,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.14, y: 1.3}
-  m_Size: {x: 1.76, y: 1.24}
+  m_Offset: {x: 0.01, y: 1.12}
+  m_Size: {x: 1.52, y: 1.24}
   m_Direction: 0
 --- !u!50 &994509658
 Rigidbody2D:
@@ -2824,8 +2837,6 @@ MonoBehaviour:
   currentHp: 0
   maxHp: 100
   horizontalMovement: 0
-  acceleration: 7
-  deceleration: 10
   damage: 100
   rb: {fileID: 1150375995}
   flightSpeed: 5
@@ -2894,8 +2905,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.07, y: 1.21}
-  m_Size: {x: 0.81, y: 1.62}
+  m_Offset: {x: 0.07, y: 1.06}
+  m_Size: {x: 0.81, y: 1.46}
   m_Direction: 0
 --- !u!1 &1152241534
 GameObject:
@@ -4829,6 +4840,10 @@ PrefabInstance:
       value: 3.74
       objectReference: {fileID: 0}
     - target: {fileID: 3079704849216252197, guid: 0b9cb9e2e07a83f4ca8178510a75822d, type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.5875862
+      objectReference: {fileID: 0}
+    - target: {fileID: 3079704849216252197, guid: 0b9cb9e2e07a83f4ca8178510a75822d, type: 3}
       propertyPath: m_SpriteTilingProperty.drawMode
       value: 2
       objectReference: {fileID: 0}
@@ -4838,15 +4853,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3079704849216252197, guid: 0b9cb9e2e07a83f4ca8178510a75822d, type: 3}
       propertyPath: m_SpriteTilingProperty.newSize.y
-      value: 5.45
+      value: 7.25
       objectReference: {fileID: 0}
     - target: {fileID: 3079704849216252197, guid: 0b9cb9e2e07a83f4ca8178510a75822d, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 21.707602
+      value: 21.7
       objectReference: {fileID: 0}
     - target: {fileID: 3079704849216252197, guid: 0b9cb9e2e07a83f4ca8178510a75822d, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 5.45
+      value: 7.25
       objectReference: {fileID: 0}
     - target: {fileID: 4589379326564337538, guid: 0b9cb9e2e07a83f4ca8178510a75822d, type: 3}
       propertyPath: m_Size.x
@@ -4909,9 +4924,13 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5621920024012337581, guid: 0b9cb9e2e07a83f4ca8178510a75822d, type: 3}
+      propertyPath: damage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5621920024012337581, guid: 0b9cb9e2e07a83f4ca8178510a75822d, type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 621445198}
+      objectReference: {fileID: 53635330}
     - target: {fileID: 5828741057567279603, guid: 0b9cb9e2e07a83f4ca8178510a75822d, type: 3}
       propertyPath: m_Name
       value: Cave Ground
@@ -4929,6 +4948,10 @@ PrefabInstance:
       value: 9.26
       objectReference: {fileID: 0}
     - target: {fileID: 6579135677088912389, guid: 0b9cb9e2e07a83f4ca8178510a75822d, type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.5875862
+      objectReference: {fileID: 0}
+    - target: {fileID: 6579135677088912389, guid: 0b9cb9e2e07a83f4ca8178510a75822d, type: 3}
       propertyPath: m_SpriteTilingProperty.drawMode
       value: 2
       objectReference: {fileID: 0}
@@ -4938,15 +4961,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6579135677088912389, guid: 0b9cb9e2e07a83f4ca8178510a75822d, type: 3}
       propertyPath: m_SpriteTilingProperty.newSize.y
-      value: 5.45
+      value: 7.25
       objectReference: {fileID: 0}
     - target: {fileID: 6579135677088912389, guid: 0b9cb9e2e07a83f4ca8178510a75822d, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 21.707602
+      value: 21.7
       objectReference: {fileID: 0}
     - target: {fileID: 6579135677088912389, guid: 0b9cb9e2e07a83f4ca8178510a75822d, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 5.45
+      value: 7.25
       objectReference: {fileID: 0}
     - target: {fileID: 7067164695525275491, guid: 0b9cb9e2e07a83f4ca8178510a75822d, type: 3}
       propertyPath: m_LocalScale.x
@@ -4963,6 +4986,14 @@ PrefabInstance:
     - target: {fileID: 7688852235196529404, guid: 0b9cb9e2e07a83f4ca8178510a75822d, type: 3}
       propertyPath: m_LocalScale.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8634438276837943045, guid: 0b9cb9e2e07a83f4ca8178510a75822d, type: 3}
+      propertyPath: m_Size.x
+      value: 13.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8634438276837943045, guid: 0b9cb9e2e07a83f4ca8178510a75822d, type: 3}
+      propertyPath: m_Offset.x
+      value: 1.76
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4977,6 +5008,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -1797886287202838319, guid: fa0d963ace1bd084091999c110308147, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 53635330}
     - target: {fileID: 127157328558776326, guid: fa0d963ace1bd084091999c110308147, type: 3}
       propertyPath: m_Size.x
       value: 4.6
@@ -5142,6 +5177,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 237552950837051271, guid: beeb7845888345f4f989f2b06bfc1d48, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 53635330}
     - target: {fileID: 3393892436031403649, guid: beeb7845888345f4f989f2b06bfc1d48, type: 3}
       propertyPath: m_Name
       value: SquareSpikes

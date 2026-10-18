@@ -23,7 +23,8 @@ public class CharacterMovement : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {   
+        currentCharacter.horizontalMovement = horizontalMovement;
         currentCharacter.Movement(rb, horizontalMovement, verticalMovement);  //Added vertical movement for the bird character
         // need to update current character when switching happens
         currentCharacter = characterSwitcher.ActiveCharacter; // get the active character from the CharacterSwitcher script 

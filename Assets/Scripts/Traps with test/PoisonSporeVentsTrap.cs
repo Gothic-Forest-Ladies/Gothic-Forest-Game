@@ -2,13 +2,14 @@ using UnityEngine;
 
 public class PoisonSporeVentsTrap : AbstractTrap
 {
-    public int damage = 100;
     public GameObject player;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
      public override void ApplyDamageToPlayer(IDamagable damagable)
         {
+            Debug.Log($"[PoisonTrap] Applying damage to {damagable}");
+            
             damagable.ApplyDamage(damage);
             Debug.Log("There was damage done! A player heart is lost!");
             //Die();
@@ -23,14 +24,15 @@ public class PoisonSporeVentsTrap : AbstractTrap
         public override void ApplyDamage(int damage)
         {   
             // insert apply damage to player health logic here
-            // playerScript = player.GetComponent<PlayerBehaviour>();
-            player.GetComponent<PlayerBehaviour>().ApplyDamage(damage);
         }
 
          void OnCollisionEnter2D(Collision2D col)
         {
-           if (col.transform.tag == "Mouse") {
-                Debug.Log("The trap has been touched by the Mouse!");
+            Debug.Log($"[PoisonTrap] Collision with: {col.gameObject.name}, " + $"Tag: {col.gameObject.tag}, " + 
+            $"IDamagable: {col.gameObject.GetComponent<IDamagable>() != null}");
+
+           if (col.transform.tag == "Hedgehog") {
+                Debug.Log("The trap has been touched by the Hedgehog!");
             }
             else {
                 Debug.Log("The trap has been touched! Wrong Character! (Bird/Bear)");

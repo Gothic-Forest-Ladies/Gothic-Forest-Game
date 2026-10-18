@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Mouse : PlayableCharacter
+public class Hedgehog : PlayableCharacter
 {
     [SerializeField] public Rigidbody2D rb;
 
@@ -84,22 +84,7 @@ public class Mouse : PlayableCharacter
         return !blocked;
     }
     
-    public override void TakeDamageFromTrap(IDamagable damagable) // apply dmg to trap (?)
-    {
-        // maybe when passed through successfully, it can take damage from the character player and self destruct or die?
-        damagable.ApplyDamage(damage);
-        Debug.Log("There was damage done! A player heart is lost!");
-    } 
+   
 
-     public override void ApplyDamage(int damage)
-    {
-         // apply dmg to trap (?)/ take dmg from trap
-          currentHp -= damage;
-        if (currentHp <= 0)
-        {
-            Die();
-        }
-
-    }
-
+   
 }
