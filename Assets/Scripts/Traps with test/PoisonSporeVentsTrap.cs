@@ -9,7 +9,7 @@ public class PoisonSporeVentsTrap : AbstractTrap
      public override void ApplyDamageToPlayer(IDamagable damagable)
         {
             Debug.Log($"[PoisonTrap] Applying damage to {damagable}");
-            
+
             damagable.ApplyDamage(damage);
             Debug.Log("There was damage done! A player heart is lost!");
             //Die();
@@ -28,6 +28,14 @@ public class PoisonSporeVentsTrap : AbstractTrap
 
          void OnCollisionEnter2D(Collision2D col)
         {
+            Debug.Log($"[PoisonTrap] Time: {Time.time:F3}");
+
+            Debug.Log($"[PoisonTrap] Character Collider: {col.collider.name}, Type: {col.collider.GetType().Name}");
+
+            Debug.Log($"[PoisonTrap] Trap Collider: {col.otherCollider.name}, Type: {col.otherCollider.GetType().Name}");
+
+            Debug.Log($"[PoisonTrap] Contact Count: {col.contactCount}");
+
             Debug.Log($"[PoisonTrap] Collision with: {col.gameObject.name}, " + $"Tag: {col.gameObject.tag}, " + 
             $"IDamagable: {col.gameObject.GetComponent<IDamagable>() != null}");
 
