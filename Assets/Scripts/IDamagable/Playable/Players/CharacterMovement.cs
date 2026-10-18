@@ -18,19 +18,34 @@ public class CharacterMovement : MonoBehaviour
         currentCharacter = characterSwitcher.ActiveCharacter; // get the active character from the CharacterSwitcher script
         rb = currentCharacter.GetComponent<Rigidbody2D>(); // get its rb to change velocity
 
-        Debug.Log(rb);
+        // Debug.Log(rb);
     }
 
     // Update is called once per frame
+    
     void Update()
-    {   
-        currentCharacter.horizontalMovement = horizontalMovement;
-        currentCharacter.Movement(rb, horizontalMovement, verticalMovement);  //Added vertical movement for the bird character
-        // need to update current character when switching happens
-        currentCharacter = characterSwitcher.ActiveCharacter; // get the active character from the CharacterSwitcher script 
-        // (checks if it was switched-> it updated)
-        rb = currentCharacter.GetComponent<Rigidbody2D>(); // get its rb to change velocity (in case it was switched)
-    }
+{
+    // Update the active character references first
+    currentCharacter = characterSwitcher.ActiveCharacter;
+
+    if (currentCharacter == null) // (checks if it was switched-> it updated)
+        return;
+
+    // get its rb to change velocity (in case it was switched)
+    rb = currentCharacter.GetComponent<Rigidbody2D>();
+
+    if (rb == null)
+        return;
+
+    currentCharacter.horizontalMovement = horizontalMovement;
+
+    // Don't overwrite Rigidbody2D velocity during knockback.
+    if (currentCharacter.IsKnockedBack)
+        return;
+
+    currentCharacter.Movement(rb, horizontalMovement, verticalMovement); //Added vertical movement for the bird character
+}
+
 
     // Reads the keyboard input from Unity's Input System, such as pressing left or right.
     public void Move(InputAction.CallbackContext context)

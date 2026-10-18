@@ -22,9 +22,7 @@ public class Bear : PlayableCharacter
         {
             // Preserve the Bear's heavy acceleration and deceleration.
             float targetVx = horizontalInput * moveSpeed;
-
             float rate = Mathf.Abs(targetVx) > 0.01f ? acceleration : deceleration;
-
             float vx = Mathf.MoveTowards(body.linearVelocity.x, targetVx, rate * Time.fixedDeltaTime);
 
             body.linearVelocity = new Vector2(vx, body.linearVelocity.y);
@@ -34,6 +32,9 @@ public class Bear : PlayableCharacter
     // Special ability (passive)
      private void OnCollisionStay2D(Collision2D collision)
     {
+        if (IsKnockedBack) // make sure bear temporarily stops pushing boulders while kb
+            return;
+
         if (!collision.gameObject.CompareTag("Boulder")) // if the object is not a boulder
         {
             return;

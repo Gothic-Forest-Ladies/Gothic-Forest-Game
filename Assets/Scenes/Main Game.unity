@@ -379,6 +379,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HealthSystem
   maxHp: 3
   currentHp: 0
+  invulnerabilityDuration: 2
 --- !u!1 &125197042
 GameObject:
   m_ObjectHideFlags: 0
@@ -1568,6 +1569,8 @@ MonoBehaviour:
   maxHp: 100
   horizontalMovement: 0
   damage: 100
+  knockbackForce: 20
+  knockbackDuration: 0.2
   acceleration: 7
   deceleration: 10
   pushPower: 2
@@ -2007,6 +2010,8 @@ MonoBehaviour:
   maxHp: 100
   horizontalMovement: 0
   damage: 100
+  knockbackForce: 18
+  knockbackDuration: 0.2
   rb: {fileID: 994509658}
   rollScale: 0.5
   rollSpeedMultiplier: 1.8
@@ -2668,6 +2673,8 @@ MonoBehaviour:
   maxHp: 100
   horizontalMovement: 0
   damage: 100
+  knockbackForce: 20
+  knockbackDuration: 0.2
   rb: {fileID: 1150375995}
   flightSpeed: 5
   maxFlightTime: 5

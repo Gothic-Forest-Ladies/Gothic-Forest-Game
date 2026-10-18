@@ -30,14 +30,26 @@ public class ThornPitTrap : AbstractTrap
         void OnCollisionEnter2D(Collision2D col)
         {
             Debug.Log("The trap has been touched! Any Character will get hurt!");
-            if (col.gameObject.GetComponent<IDamagable>() == null) return;
-            ApplyDamageToPlayer(col.gameObject.GetComponent<IDamagable>());
+            IDamagable damagable = col.gameObject.GetComponent<IDamagable>();
+
+            if (damagable == null)
+                return;            
+
+            ApplyDamageToPlayer(damagable);
             
+            // Get the playable character that collided with the trap.
+            PlayableCharacter character = col.gameObject.GetComponent<PlayableCharacter>();
 
-            // insert player knockback effect logic
+            if (character == null)
+                return;
 
-            // insert player health reduction upon collision 
-            // (decrease one 1 heart with contact with any character since the bird needs to fly over it)
+            // Push the character away from the trap.
+           // Vector2 direction = Vector2.up;
+           float horizontalDirection = character.transform.position.x < transform.position.x ? -1f : 1f;
+            Vector2 direction = new Vector2(horizontalDirection, 1.5f);
+
+            character.Knockback(direction);
+            
 
         }
 
