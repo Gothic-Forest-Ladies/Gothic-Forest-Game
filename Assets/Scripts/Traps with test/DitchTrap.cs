@@ -2,11 +2,7 @@ using UnityEngine;
 
 public class DitchTrap : AbstractTrap
 {
-    public int damage = 100;
-    public GameObject player;
-
-
-
+    public int damage;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     
         public override void ApplyDamageToPlayer(IDamagable damagable)
@@ -23,27 +19,36 @@ public class DitchTrap : AbstractTrap
         public override void ApplyDamage(int damage)
         {
             // insert apply damage to player health logic here
-            player.GetComponent<Bear>().ApplyDamage(damage);
+            //player.GetComponent<Bear>().ApplyDamage(damage);
 
         }
 
         void OnCollisionEnter2D(Collision2D col)
         {
-            if (col.transform.tag == "Boulder") {
+            if (col.gameObject.CompareTag("Boulder"))
+            {
                 Debug.Log("The trap has been touched by the boulder!");
+                return;
             }
-            else {
-                Debug.Log("The trap has been touched! Any Character will get hurt!");
-                if (col.gameObject.GetComponent<IDamagable>() == null) return;
-                ApplyDamageToPlayer(col.gameObject.GetComponent<IDamagable>());
-            }
-            
 
-            // insert player knockback effect logic
+            Debug.Log("The trap has been touched! Any Character will get hurt!");
 
-            // insert player health reduction upon collision 
-            // (decrease one 1 heart with contact with any character since only the boulder needs to touch it)
+            IDamagable damagable = col.gameObject.GetComponent<IDamagable>();
 
+            if (damagable == null)
+                return;
+            ApplyDamageToPlayer(damagable);
+
+            // Apply knockback to all playable characters
+            PlayableCharacter character = col.gameObject.GetComponent<PlayableCharacter>();
+
+            if (character == null) // make sure we got the character
+                return;
+
+            float horizontalDirection = character.transform.position.x < transform.position.x ? -1f : 1f;
+            Vector2 direction = new Vector2(horizontalDirection, 1.5f);
+
+            character.Knockback(direction);
 
         }
 

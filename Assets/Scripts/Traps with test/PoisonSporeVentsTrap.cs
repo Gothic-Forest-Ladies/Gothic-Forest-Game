@@ -2,13 +2,12 @@ using UnityEngine;
 
 public class PoisonSporeVentsTrap : AbstractTrap
 {
-    public int damage = 100;
-    public GameObject player;
-
-
+    public int damage;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
      public override void ApplyDamageToPlayer(IDamagable damagable)
         {
+            Debug.Log($"[PoisonTrap] Applying damage to {damagable}");
+
             damagable.ApplyDamage(damage);
             Debug.Log("There was damage done! A player heart is lost!");
             //Die();
@@ -23,27 +22,36 @@ public class PoisonSporeVentsTrap : AbstractTrap
         public override void ApplyDamage(int damage)
         {   
             // insert apply damage to player health logic here
-            // playerScript = player.GetComponent<PlayerBehaviour>();
-            player.GetComponent<PlayerBehaviour>().ApplyDamage(damage);
         }
 
          void OnCollisionEnter2D(Collision2D col)
         {
-           if (col.transform.tag == "Mouse") {
-                Debug.Log("The trap has been touched by the Mouse!");
-            }
-            else {
-                Debug.Log("The trap has been touched! Wrong Character! (Bird/Bear)");
-                if (col.gameObject.GetComponent<IDamagable>() == null) return;
-                ApplyDamageToPlayer(col.gameObject.GetComponent<IDamagable>());
-            }
-            
 
-            // insert player knockback effect logic
+           // Hedgehog is immune to poison spores.
+            if (col.gameObject.CompareTag("Hedgehog"))
+            {
+                Debug.Log("The trap has been touched by the Hedgehog!");
+                return;
+            }
+           
+            IDamagable damagable = col.gameObject.GetComponent<IDamagable>();
 
-            // insert player health reduction upon collision 
-            // (decrease one 1 heart with contact with the wrong character (bird, bear) since the mouse needs to go inside and cross it)
-            
+            if (damagable == null)
+                return;
+
+            Debug.Log("The trap has been touched! Wrong Character! (Bird/Bear)");
+            ApplyDamageToPlayer(damagable);
+
+            // Knockback applies only to Bird/Bear playable characters.
+            PlayableCharacter character = col.gameObject.GetComponent<PlayableCharacter>();
+
+            if (character == null) // make sure we got the character
+                return;
+
+            float horizontalDirection = character.transform.position.x < transform.position.x ? -1f : 1f;
+            Vector2 direction = new Vector2(horizontalDirection, 1.5f);
+
+            character.Knockback(direction);
 
         }
 
