@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class owl : PlayableCharacter
+public class Owl : PlayableCharacter
 {
     // Added flight special ability for the bird character (17.10.26, Ola)
 
@@ -11,14 +11,17 @@ public class owl : PlayableCharacter
     [Header("Flight Ability")]
     [SerializeField] private float flightSpeed = 5f;     // how fast the bird flies
     [SerializeField] private float maxFlightTime = 5f;   // seconds the bird can stay in the air
-    [SerializeField] private float flightCooldown = 4f;  // seconds before it can fly again 
+    //[SerializeField] private float flightCooldown = 4f;  // seconds before it can fly again 
     [SerializeField] private float liftSpeed = 4f;
-    [SerializeField] private float liftDuration = 0.25f;
+    [SerializeField] private float liftDuration = 0.5f;
     private float liftTimeLeft;
+    [SerializeField] private float flightAcceleration = 25f;
+    [SerializeField] private float flightDeceleration = 20f;
+    
 
     private bool isFlying = false; // true while the ability is active
     private float flightTimeLeft; // countdown while flying
-    private float cooldownTimeLeft; // countdown after landing
+    //private float cooldownTimeLeft; // countdown after landing
     private float normalGravity; // the gravity we restore after flying
 
     void Awake()
@@ -29,11 +32,13 @@ public class owl : PlayableCharacter
 
     void Update()
     {
+        /*
         // count the cooldown down until it reaches 0
         if (cooldownTimeLeft > 0f)
         {
             cooldownTimeLeft -= Time.deltaTime;
         }
+        */
 
         // while flying, count the flight time down
         if (isFlying)
@@ -58,7 +63,7 @@ public class owl : PlayableCharacter
         {
             StopFlying(); // second press = land early
         }
-        else if (cooldownTimeLeft <= 0f)
+        else
         {
             StartFlying(); // only start if the cooldown is over
         }
@@ -76,15 +81,45 @@ public class owl : PlayableCharacter
         }
         if (isFlying)
         {
-            Vector2 direction = new Vector2(horizontalInput, verticalInput).normalized;
-            Vector2 velocity = direction * flightSpeed;
+                Vector2 input = new Vector2(horizontalInput, 0f);   // up/down keys ignored
 
-            if (liftTimeLeft > 0f)
-            {
-                velocity.y = liftSpeed;   // during the lift, always rise, ignoring up/down keys
-            }
+                // the speed we WANT to reach
+                Vector2 targetVelocity = input.normalized * flightSpeed;
 
-            rb.linearVelocity = velocity;
+                // is just took off
+                if (liftTimeLeft > 0f)
+                {
+                    targetVelocity.y = liftSpeed;
+                }
+                else
+                {
+                    targetVelocity.y = rb.linearVelocity.y;
+                }
+
+                // speed up when pressing keys or taking off; slow down otherwise
+                float rate = flightDeceleration;
+                if (input.magnitude > 0.01f || liftTimeLeft > 0f)
+                {
+                    rate = flightAcceleration;
+                }
+
+                rb.linearVelocity = Vector2.MoveTowards(rb.linearVelocity, targetVelocity, rate * Time.deltaTime);
+
+                if (rb.linearVelocity.y < -1.5f)
+{
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, -1.5f);
+}
+
+            //old flight, deleted (19.10.26, Ola)
+            // Vector2 direction = new Vector2(horizontalInput, verticalInput).normalized;
+            // Vector2 velocity = direction * flightSpeed;
+
+            // if (liftTimeLeft > 0f)
+            // {
+            //     velocity.y = liftSpeed;   // during the lift, always rise, ignoring up/down keys
+            // }
+
+            // rb.linearVelocity = velocity;
         }
         else
         {
@@ -98,14 +133,14 @@ public class owl : PlayableCharacter
         isFlying = true;
         liftTimeLeft = liftDuration;
         flightTimeLeft = maxFlightTime;
-        rb.gravityScale = 0f;                  // no gravity, so the bird floats
-        rb.linearVelocity = Vector2.zero;      // clear any falling speed
+        rb.gravityScale = 0.3f;
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
     }
 
     private void StopFlying()
     {
         isFlying = false;
-        cooldownTimeLeft = flightCooldown;     // start the cooldown
+        //cooldownTimeLeft = flightCooldown;     // start the cooldown
         rb.gravityScale = normalGravity;       // gravity back on, the bird falls
     }
 

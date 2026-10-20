@@ -365,6 +365,8 @@ MonoBehaviour:
   - {fileID: 621445210}
   - {fileID: 1150375994}
   - {fileID: 994509656}
+  birdUnlocked: 0
+  mouseUnlocked: 0
 --- !u!114 &53635336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1090,6 +1092,7 @@ GameObject:
   - component: {fileID: 278542102}
   - component: {fileID: 278542101}
   - component: {fileID: 278542100}
+  - component: {fileID: 278542103}
   m_Layer: 0
   m_Name: Pickup_Feather (unlock Bird)
   m_TagString: Untagged
@@ -1209,6 +1212,21 @@ Transform:
   - {fileID: 1362365703}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &278542103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 278542099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b367a1e85011ac64e8eb362e13f84710, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Collectible
+  unlocksBird: 1
+  unlocksMouse: 0
+  switcher: {fileID: 53635335}
 --- !u!1 &412671733
 GameObject:
   m_ObjectHideFlags: 0
@@ -3058,20 +3076,21 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d11ae1a8d6dd95f458badb17b333b3d0, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Bird
+  m_EditorClassIdentifier: Assembly-CSharp::Owl
   moveSpeed: 5
   currentHp: 0
-  maxHp: 100
+  maxHp: 0
   horizontalMovement: 0
-  damage: 100
-  knockbackForce: 23
+  damage: 0
+  knockbackForce: 6
   knockbackDuration: 0.2
   rb: {fileID: 1150375995}
   flightSpeed: 5
   maxFlightTime: 5
-  flightCooldown: 4
   liftSpeed: 4
-  liftDuration: 0.25
+  liftDuration: 0.5
+  flightAcceleration: 25
+  flightDeceleration: 20
 --- !u!50 &1150375995
 Rigidbody2D:
   serializedVersion: 5
@@ -4273,6 +4292,7 @@ GameObject:
   - component: {fileID: 1846841164}
   - component: {fileID: 1846841163}
   - component: {fileID: 1846841162}
+  - component: {fileID: 1846841165}
   m_Layer: 0
   m_Name: Pickup_Acorn (unlock Mouse)
   m_TagString: Untagged
@@ -4392,6 +4412,21 @@ Transform:
   - {fileID: 445048828}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1846841165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1846841161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b367a1e85011ac64e8eb362e13f84710, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Collectible
+  unlocksBird: 0
+  unlocksMouse: 1
+  switcher: {fileID: 53635335}
 --- !u!1 &1865637759
 GameObject:
   m_ObjectHideFlags: 0

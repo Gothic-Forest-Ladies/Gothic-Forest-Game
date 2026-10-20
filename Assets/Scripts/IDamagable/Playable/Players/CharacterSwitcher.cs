@@ -11,6 +11,10 @@ public class CharacterSwitcher : MonoBehaviour
     private PlayableCharacter oldCharacter;
     private PlayableCharacter newCharacter;
 
+    // Characters locked in the beginning of the game, will be unlocked later on in the game (19.10.26, Ola)
+    public bool birdUnlocked = false;
+    public bool mouseUnlocked = false;
+
     void Start()
     {
             
@@ -24,6 +28,18 @@ public class CharacterSwitcher : MonoBehaviour
         if (index < 0 || index >= characters.Count)
         {
             Debug.Log("Invalid character index! only 1, 2 or 3");
+            return;
+        }
+        // Check if the character is unlocked before switching
+        if (index == 1 && !birdUnlocked)
+        {
+            Debug.Log("The bird is still locked!");
+            return;
+        }
+        // Check if the character is unlocked before switching
+        if (index == 2 && !mouseUnlocked)
+        {
+            Debug.Log("The mouse is still locked!");
             return;
         }
         
