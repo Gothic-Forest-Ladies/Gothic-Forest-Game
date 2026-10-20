@@ -11,7 +11,7 @@ public class CameraFollow : MonoBehaviour
     public float lookAheadSpeed = 2f;    // how fast the look-ahead shifts when turning around
     public float fixedY = -1.3f;
     public float minX = -13.5f;
-    public float maxX = 27.9f;
+    public float maxX = 50.4f;
     public CharacterSwitcher switcher;
 
     Vector3 velocity;
