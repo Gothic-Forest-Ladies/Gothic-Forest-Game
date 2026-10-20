@@ -16,7 +16,10 @@ public class HeartUI : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     void Start()
-    {   
+    {
+        if (healthSystem == null) // makes the HUD safe to reuse as a prefab in other scenes
+            healthSystem = FindAnyObjectByType<HealthSystem>();
+
         if (healthSystem == null) // making sure we got HealthSystem reference
             return;
 
@@ -35,10 +38,34 @@ public class HeartUI : MonoBehaviour
         if (currentHp != oldHpValue) // comparing to see if HP has changed
         {
             updateHeartSprites(currentHp);
-        }
-       
-        oldHpValue = currentHp; // updating old HP 
 
+            if (currentHp < oldHpValue) // lost a heart: flash the hearts so the eye catches it
+            {
+                StopAllCoroutines();
+                StartCoroutine(FlashHearts());
+            }
+        }
+
+        oldHpValue = currentHp; // updating old HP
+
+    }
+
+    private System.Collections.IEnumerator FlashHearts()
+    {
+        Color flash = new Color(1f, 0.35f, 0.35f);
+        Vector3 punched = Vector3.one * 1.2f;
+
+        for (int i = 0; i < 2; i++)
+        {
+            Heart1.color = flash; Heart2.color = flash; Heart3.color = flash;
+            transform.localScale = punched;
+            yield return new WaitForSeconds(0.09f);
+            Heart1.color = Color.white; Heart2.color = Color.white; Heart3.color = Color.white;
+            transform.localScale = Vector3.one;
+            yield return new WaitForSeconds(0.09f);
+        }
+        Heart1.color = Color.white; Heart2.color = Color.white; Heart3.color = Color.white;
+        transform.localScale = Vector3.one;
     }
 
     public void updateHeartSprites(int currentHp)

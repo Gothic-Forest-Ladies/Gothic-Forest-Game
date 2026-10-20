@@ -10,6 +10,7 @@ public class Hedgehog : PlayableCharacter
     [SerializeField] private LayerMask solidLayers;// ground, walls, platforms
 
     private bool isRolling = false;
+    public bool IsRolling => isRolling; // read by HedgehogAnimationDriver and the spore vent trap
     private Vector3 normalScale;
     private float normalSpeed;
     private Collider2D col;
@@ -67,6 +68,13 @@ public class Hedgehog : PlayableCharacter
         isRolling = false;
         transform.localScale = normalScale;
         moveSpeed = normalSpeed;
+    }
+
+    // dying (or being force-swapped by the respawn) while rolled must not leave the hedgehog stuck curled
+    void OnDisable()
+    {
+        if (isRolling)
+            StopRolling();
     }
 
     // Is there empty space for the normal-sized body?

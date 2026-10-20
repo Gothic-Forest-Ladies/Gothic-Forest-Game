@@ -59,8 +59,13 @@ public class CharacterMovement : MonoBehaviour
 
     public void SpecialAbility(InputAction.CallbackContext context)
     {
+        if (currentCharacter == null)
+            return;
+
         if (context.performed)
             currentCharacter.SpecialAbility();
+        else if (context.canceled)
+            currentCharacter.SpecialAbilityReleased();
     }
     
 }

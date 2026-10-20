@@ -45,6 +45,8 @@ public class DitchTrap : AbstractTrap
             if (character == null) // make sure we got the character
                 return;
 
+            // the ditch keeps a strong upward knockback on purpose: with no jump,
+            // it is the only way out of the pit for a character that fell in
             float horizontalDirection = character.transform.position.x < transform.position.x ? -1f : 1f;
             Vector2 direction = new Vector2(horizontalDirection, 1.5f);
 

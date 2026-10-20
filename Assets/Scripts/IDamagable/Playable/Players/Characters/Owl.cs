@@ -11,34 +11,48 @@ public class Owl : PlayableCharacter
     [Header("Flight Ability")]
     [SerializeField] private float flightSpeed = 5f;     // how fast the bird flies
     [SerializeField] private float maxFlightTime = 5f;   // seconds the bird can stay in the air
-    //[SerializeField] private float flightCooldown = 4f;  // seconds before it can fly again 
+    [SerializeField] private float flightCooldown = 1.5f;  // seconds before it can fly again (stops Space-spam infinite lift)
     [SerializeField] private float liftSpeed = 4f;
     [SerializeField] private float liftDuration = 0.5f;
     private float liftTimeLeft;
     [SerializeField] private float flightAcceleration = 25f;
     [SerializeField] private float flightDeceleration = 20f;
-    
+
+
+    [SerializeField] private LayerMask takeoffGroundMask = (1 << 8) | (1 << 6) | 1; // Ground, Boulder, Default
 
     private bool isFlying = false; // true while the ability is active
     private float flightTimeLeft; // countdown while flying
-    //private float cooldownTimeLeft; // countdown after landing
+    private float cooldownTimeLeft; // countdown after landing
     private float normalGravity; // the gravity we restore after flying
+    private Collider2D bodyCollider;
+
+    public bool IsFlying => isFlying; // read by OwlAnimationDriver
 
     void Awake()
     {
         normalGravity = rb.gravityScale;
         sprite = GetComponentInChildren<SpriteRenderer>();
+        bodyCollider = GetComponent<Collider2D>();
+    }
+
+    // flight may only START from the ground; re-triggering lift mid-air allowed
+    // climbing forever and flying over the whole level
+    private bool IsGrounded()
+    {
+        if (bodyCollider == null)
+            return true;
+        Vector2 feet = new Vector2(bodyCollider.bounds.center.x, bodyCollider.bounds.min.y + 0.05f);
+        return Physics2D.Raycast(feet, Vector2.down, 0.35f, takeoffGroundMask);
     }
 
     void Update()
     {
-        /*
         // count the cooldown down until it reaches 0
         if (cooldownTimeLeft > 0f)
         {
             cooldownTimeLeft -= Time.deltaTime;
         }
-        */
 
         // while flying, count the flight time down
         if (isFlying)
@@ -63,9 +77,9 @@ public class Owl : PlayableCharacter
         {
             StopFlying(); // second press = land early
         }
-        else
+        else if (cooldownTimeLeft <= 0f && IsGrounded())
         {
-            StartFlying(); // only start if the cooldown is over
+            StartFlying(); // only from the ground, and only once the cooldown is over
         }
     }
 
@@ -140,7 +154,7 @@ public class Owl : PlayableCharacter
     private void StopFlying()
     {
         isFlying = false;
-        //cooldownTimeLeft = flightCooldown;     // start the cooldown
+        cooldownTimeLeft = flightCooldown;     // start the cooldown
         rb.gravityScale = normalGravity;       // gravity back on, the bird falls
     }
 

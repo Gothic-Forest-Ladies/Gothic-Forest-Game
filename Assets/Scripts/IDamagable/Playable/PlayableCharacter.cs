@@ -31,6 +31,12 @@ public abstract class PlayableCharacter : MonoBehaviour, IDamagable
         currentHp = maxHp;
     }
 
+    protected virtual void OnEnable()
+    {
+        // the knockback coroutine dies with the object; never come back stuck mid-knockback
+        IsKnockedBack = false;
+    }
+
     void Update()
     {
         //rb.linearVelocity = new Vector2(horizontalMovement * speed, rb.linearVelocity.y);
@@ -55,7 +61,16 @@ public abstract class PlayableCharacter : MonoBehaviour, IDamagable
     public virtual void Die()
     {
         Debug.Log("The player has died ): Game over");
-        // insert scene reload logic.
+
+        // soft respawn (camera pan + fog) when a RespawnManager is on the Player
+        RespawnManager respawn = GetComponentInParent<RespawnManager>();
+        if (respawn != null)
+        {
+            respawn.BeginRespawn();
+            return;
+        }
+
+        // fallback: old behaviour, reload the scene
         Debug.Log("The player has died! Reloading scene...");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
@@ -72,6 +87,11 @@ public abstract class PlayableCharacter : MonoBehaviour, IDamagable
     public virtual void SpecialAbility()
     {
         // Implementation for special ability (each animal is different)
+    }
+
+    // called when the ability key is released (used by the Bear's hold-to-push)
+    public virtual void SpecialAbilityReleased()
+    {
     }
     
 
