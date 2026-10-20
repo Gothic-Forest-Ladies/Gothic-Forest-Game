@@ -68,6 +68,15 @@ public class HealthSystem : MonoBehaviour
         Debug.Log("[HealthSystem] Invulnerability ended!");
     }
 
+    // used by RespawnManager: back to full health, ready to die again
+    public void ResetHealth()
+    {
+        StopCoroutine(nameof(EndInvulnerabilityCD));
+        currentHp = maxHp;
+        hasDiedOnce = false;
+        isInvulnerable = false;
+    }
+
    
 
 }

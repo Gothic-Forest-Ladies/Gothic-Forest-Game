@@ -17,6 +17,7 @@ public class BearAnimationDriver : MonoBehaviour
     SpriteRenderer sprite;
     Collider2D bodyCollider;
     CharacterMovement input;
+    Bear bear;
     int facing = 1; // 1 = right (art faces right), -1 = left
     float lastFixedX;
     bool measuredMoving;
@@ -28,6 +29,7 @@ public class BearAnimationDriver : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         bodyCollider = GetComponent<Collider2D>();
         input = GetComponentInParent<CharacterMovement>();
+        bear = GetComponent<Bear>();
         lastFixedX = transform.position.x;
     }
 
@@ -52,8 +54,8 @@ public class BearAnimationDriver : MonoBehaviour
             sprite.flipX = facing < 0;
         }
 
-        // pushing = leaning into the boulder, even while the push is stalled or slow
-        bool pushing = Mathf.Abs(inputX) > 0.1f && TouchingBoulderAhead();
+        // pushing = the SPACE shove ability is playing out (not automatic contact any more)
+        bool pushing = bear != null && bear.IsShoving;
 
         animator.SetBool("isWalking", moving && !pushing);
         animator.SetBool("isPushing", pushing);

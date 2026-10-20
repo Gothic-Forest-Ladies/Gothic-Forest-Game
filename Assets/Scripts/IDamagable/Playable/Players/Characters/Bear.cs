@@ -5,11 +5,17 @@ public class Bear : PlayableCharacter
 {
     [SerializeField] public float acceleration = 7f;   // units/sec^2 while speeding up - low value = heavy bear
     [SerializeField] public float deceleration = 10f;  // units/sec^2 while stopping
-    
-    [Header("Boulder Pushing")]
-    [SerializeField] private float pushPower = 1f;
+
+    [Header("Boulder Pushing (hold SPACE)")]
+    [SerializeField] private float pushReach = 0.7f;            // how far in front the bear can reach a boulder
+    [SerializeField] private LayerMask boulderMask = 1 << 6;    // Boulder layer
     [SerializeField] private Rigidbody2D rb;
 
+    private SpriteRenderer sprite;
+    private Collider2D bodyCollider;
+    private bool pushHeld;
+
+    public bool IsShoving { get; private set; } // read by BearAnimationDriver for the push animation
 
     private void Awake()
     {
@@ -17,7 +23,10 @@ public class Bear : PlayableCharacter
         {
             rb = GetComponent<Rigidbody2D>();
         }
+        sprite = GetComponentInChildren<SpriteRenderer>();
+        bodyCollider = GetComponent<Collider2D>();
     }
+
     public override void Movement(Rigidbody2D body, float horizontalInput, float verticalInput)
         {
             // Preserve the Bear's heavy acceleration and deceleration.
@@ -28,44 +37,47 @@ public class Bear : PlayableCharacter
             body.linearVelocity = new Vector2(vx, body.linearVelocity.y);
         }
 
-
-    // Special ability (passive)
-     private void OnCollisionStay2D(Collision2D collision)
+    // SPACE held = keep pushing the boulder in front; released = stop.
+    public override void SpecialAbility()
     {
-        if (IsKnockedBack) // make sure bear temporarily stops pushing boulders while kb
-            return;
-
-        if (!collision.gameObject.CompareTag("Boulder")) // if the object is not a boulder
-        {
-            return;
-        }
-
-        // Only push while the Bear is moving into the boulder.
-        float inputX = horizontalMovement;
-
-        if (Mathf.Abs(inputX) < 0.1f)
-        {
-            return;
-        }
-
-        Rigidbody2D boulder = collision.rigidbody;
-
-        if (boulder == null) // if boulder doesnt have a rigidbody2D:
-        {
-            return;
-        }
-
-        // Only push if the input points toward the boulder.
-        float direction = Mathf.Sign(inputX);
-        float bearToBoulder = collision.transform.position.x - transform.position.x;
-
-        if (direction * bearToBoulder <= 0f)
-        {
-            return;
-        }
-
-        boulder.AddForce(Vector2.right * direction * pushPower, ForceMode2D.Force);
+        pushHeld = true;
     }
-   
-   
+
+    public override void SpecialAbilityReleased()
+    {
+        pushHeld = false;
+    }
+
+    void FixedUpdate()
+    {
+        bool pushing = false;
+
+        if (pushHeld && !IsKnockedBack)
+        {
+            // bear art faces right; flipX means facing left (same convention as BearAnimationDriver)
+            float direction = (sprite != null && sprite.flipX) ? -1f : 1f;
+
+            // overlap zone just in front of the bear (OverlapBox also catches a boulder
+            // the bear is already leaning against, which a BoxCast can skip)
+            Bounds b = bodyCollider.bounds;
+            Vector2 zoneCenter = (Vector2)b.center + new Vector2(direction * (b.extents.x + pushReach * 0.5f), 0f);
+            Vector2 zoneSize = new Vector2(pushReach + 0.3f, b.size.y * 0.8f);
+            Collider2D hit = Physics2D.OverlapBox(zoneCenter, zoneSize, 0f, boulderMask);
+
+            if (hit != null)
+            {
+                PushableBoulder boulder = hit.GetComponentInParent<PushableBoulder>();
+                if (boulder != null)
+                    pushing = boulder.PushTick(direction);
+            }
+        }
+
+        IsShoving = pushing;
+    }
+
+    void OnDisable()
+    {
+        pushHeld = false;
+        IsShoving = false;
+    }
 }

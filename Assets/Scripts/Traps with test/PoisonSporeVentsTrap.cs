@@ -3,6 +3,7 @@ using UnityEngine;
 public class PoisonSporeVentsTrap : AbstractTrap
 {
     public int damage;
+    public bool destroyableByBoulder; // true only on the standalone spawnable vent, never on the cave floor
     // Start is called once before the first execution of Update after the MonoBehaviour is created
      public override void ApplyDamageToPlayer(IDamagable damagable)
         {
@@ -15,8 +16,8 @@ public class PoisonSporeVentsTrap : AbstractTrap
 
         public override void Die()
         {
-            // placeholder until we figure out how the trap "dies"
-
+            Debug.Log($"Trap {name} was crushed by the boulder!");
+            Destroy(gameObject);
         }
 
         public override void ApplyDamage(int damage)
@@ -26,11 +27,18 @@ public class PoisonSporeVentsTrap : AbstractTrap
 
          void OnCollisionEnter2D(Collision2D col)
         {
-
-           // Hedgehog is immune to poison spores.
-            if (col.gameObject.CompareTag("Hedgehog"))
+            if (col.gameObject.CompareTag("Boulder"))
             {
-                Debug.Log("The trap has been touched by the Hedgehog!");
+                if (destroyableByBoulder)
+                    Die();
+                return;
+            }
+
+           // Hedgehog is immune to poison spores, but only while curled up.
+            Hedgehog hedgehog = col.gameObject.GetComponent<Hedgehog>();
+            if (hedgehog != null && hedgehog.IsRolling)
+            {
+                Debug.Log("The curled-up Hedgehog rolls safely over the spores!");
                 return;
             }
            
@@ -48,8 +56,9 @@ public class PoisonSporeVentsTrap : AbstractTrap
             if (character == null) // make sure we got the character
                 return;
 
+            // mostly sideways, barely up (the old 1.5 up felt like a bounce)
             float horizontalDirection = character.transform.position.x < transform.position.x ? -1f : 1f;
-            Vector2 direction = new Vector2(horizontalDirection, 1.5f);
+            Vector2 direction = new Vector2(horizontalDirection, 0.3f);
 
             character.Knockback(direction);
 
