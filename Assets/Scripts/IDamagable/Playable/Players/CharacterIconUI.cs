@@ -24,12 +24,11 @@ public class CharacterIconUI : MonoBehaviour
     [SerializeField] private GameObject owlLockedOverlay;
     [SerializeField] private GameObject hedgehogLockedOverlay;
 
-    [Header("Switch-Ready Glow")]
-    [SerializeField] private Image bearGlow;      // pulses behind every unlocked, non-active icon
+    [Header("Unlocked Glow")]
+    [SerializeField] private Image bearGlow;      // steady soft glow behind every unlocked icon
     [SerializeField] private Image owlGlow;
     [SerializeField] private Image hedgehogGlow;
-    [SerializeField] private Color glowColor = new Color(1f, 0.85f, 0.3f, 0.8f);
-    [SerializeField] private float pulseSpeed = 1.2f; // pulses per second
+    [SerializeField] private Color glowColor = new Color(1f, 0.85f, 0.3f, 0.5f);
 
     private static readonly Color LockedTint = new Color(0.25f, 0.25f, 0.25f, 1f);
     private static readonly Color InactiveTint = new Color(0.55f, 0.55f, 0.55f, 1f);
@@ -38,8 +37,6 @@ public class CharacterIconUI : MonoBehaviour
     private int oldIndex = -1;
     private bool oldBird;
     private bool oldMouse;
-    private float owlUnlockTime = -10f;      // for the one-shot unlock flash
-    private float hedgehogUnlockTime = -10f;
 
     void Start()
     {
@@ -59,40 +56,18 @@ public class CharacterIconUI : MonoBehaviour
             switcher.birdUnlocked != oldBird ||
             switcher.mouseUnlocked != oldMouse)
         {
-            if (!oldBird && switcher.birdUnlocked)
-                owlUnlockTime = Time.unscaledTime;
-            if (!oldMouse && switcher.mouseUnlocked)
-                hedgehogUnlockTime = Time.unscaledTime;
-
             Refresh();
         }
-
-        // glow = "you can switch to this one" (unscaled time so it keeps pulsing on the win freeze)
-        AnimateGlow(bearGlow, oldIndex != 0, -10f);
-        AnimateGlow(owlGlow, oldBird && oldIndex != 1, owlUnlockTime);
-        AnimateGlow(hedgehogGlow, oldMouse && oldIndex != 2, hedgehogUnlockTime);
     }
 
-    private void AnimateGlow(Image glow, bool available, float unlockTime)
+    private void SetGlow(Image glow, bool unlocked)
     {
         if (glow == null)
             return;
 
-        // one-shot bright flash right after unlocking, fading over 0.8s
-        float flash = Mathf.Clamp01(1f - (Time.unscaledTime - unlockTime) / 0.8f);
-
-        if (!available && flash <= 0f)
-        {
-            glow.enabled = false;
-            return;
-        }
-
-        glow.enabled = true;
-        float pulse = 0.5f + 0.5f * Mathf.Sin(Time.unscaledTime * pulseSpeed * 2f * Mathf.PI);
-        Color c = glowColor;
-        c.a = Mathf.Max(available ? glowColor.a * (0.35f + 0.65f * pulse) : 0f, flash);
-        glow.color = c;
-        glow.transform.localScale = Vector3.one * (1f + 0.12f * pulse + 0.6f * flash);
+        glow.enabled = unlocked;
+        glow.color = glowColor;
+        glow.transform.localScale = Vector3.one;
     }
 
     private void Refresh()
@@ -108,6 +83,10 @@ public class CharacterIconUI : MonoBehaviour
         ApplyState(bearIcon, bearActiveSprite, bearActiveSprite, null, true, oldIndex == 0);
         ApplyState(owlIcon, owlActiveSprite, owlInactiveSprite, owlLockedOverlay, oldBird, oldIndex == 1);
         ApplyState(hedgehogIcon, hedgehogActiveSprite, hedgehogInactiveSprite, hedgehogLockedOverlay, oldMouse, oldIndex == 2);
+
+        SetGlow(bearGlow, true);
+        SetGlow(owlGlow, oldBird);
+        SetGlow(hedgehogGlow, oldMouse);
     }
 
     private void ApplyState(Image icon, Sprite activeSprite, Sprite inactiveSprite,
